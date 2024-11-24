@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <form [formGroup]="loginForm"  (ngSubmit)="onLogIn()" class="sign-in-form">
+                <h2 class="title">Log in</h2>
+                <div class="input-field">
+                    <i class="bi bi-person"></i>
+                    <input type="text" name="Username" placeholder="Username" formControlName="email" />
+                </div>
+                <div class="input-field">
+                    <i class="bi bi-key"></i>
+                    <input name="password" type="password" placeholder="Password" formControlName="password" />
+                </div>
+                <button  type="submit" class="btn solid" >Login</button>
+
+            </form>
+            <!-- <form action="#" class="sign-up-form">
+                <h2 class="title">Login</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" />
+                </div>
+            </form> -->
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>Wellcome Back Admin</h3>
+                <p>
+                    Improve The Rolex Gym With Your Management Skills
+                </p>
+
+            </div>
+            <img src="https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png" class="image" alt="" />
+        </div>
+    </div>

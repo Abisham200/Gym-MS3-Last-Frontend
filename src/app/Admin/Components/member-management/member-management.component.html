@@ -1,0 +1,59 @@
+<div class="container my-5">
+  <div class="d-flex justify-content-around align-items-center mb-3">
+    <h2 class="display-4 mb-0">Members List</h2>
+    <input
+      type="text"
+      class="form-control w-50"
+      placeholder="Search by First Name, Last Name, Address, or NIC"
+      [(ngModel)]="searchText"
+    />
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>NIC</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of members; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ member.firstName }}</td>
+          <td>{{ member.lastName }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.contactNumber }}</td>
+          <td>{{ member.nic }}</td>
+          <td>{{ member.age }}</td>
+          <td>{{ member.gender }}</td>
+          <td>{{ member.address }}</td>
+          <td>
+            <div class="btn-group" role="group">
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="editMember(member.id)"
+              >
+                <i class="bi bi-pencil-fill"></i> Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="deleteMember(member.id)"
+              >
+                <i class="bi bi-trash-fill"></i> Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
