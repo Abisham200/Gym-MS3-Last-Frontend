@@ -7,13 +7,13 @@ export interface User {
   email: string,
   nic: string,
   age: number,
-  gender: Gender,
-  height: number,
-  weight:number,
-  creationDate: Date,
-  memberStatus: boolean,
-  address: string,
-  profileImage: string,
+  gender?: Gender,
+  height?: number,
+  weight?:number,
+  creationDate?: Date,
+  memberStatus?: boolean,
+  address?: string,
+  profileImage?: string,
   role: UserRoles
 }
 

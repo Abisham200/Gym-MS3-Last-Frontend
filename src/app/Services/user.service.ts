@@ -18,14 +18,27 @@ export class UserService {
   }
 
   logIn(user : any){
-    return this.http.post<Token>( this.url, user);
+    return this.http.post<Token>( "http://localhost:5204/api/User/Login", user);
   }
   getRoles(){
     return this.http.get(this.url);
   }
-  // getAllUsers(){
-  //   return this.http.get<User[]>("http://localhost:5057/api/Users?role=2")
-  // }
+  loadUsers(){
+    return this.http.get<User[]>("http://localhost:5204/api/User/GetUsers")
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete("http://localhost:5204/api/User/DeleteUser" + "/" + id);
+  }
+
+  getUser(id: number) {
+    return this.http.get<User>( "http://localhost:5204/api/User/GetUserByID/1" + "/" + id);
+  }
+
+  updateUser(user: User) {
+    return this.http.put( "http://localhost:5204/api/User/UpdateUser?id=4" + "/" + user.id, user);
+  }
+
   isLoggedIn() {
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');

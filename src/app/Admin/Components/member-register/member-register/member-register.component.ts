@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { UserService } from '../../../../Services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member-register',
@@ -10,7 +13,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
   export class RegisterMemberComponent implements OnInit {
     registerForm!: FormGroup;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private userServices : UserService, private toastr : ToastrService, private router : Router) {}
 
     ngOnInit(): void {
       this.initializeForm();
@@ -21,15 +24,17 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
         firstName: ['', [Validators.required, Validators.minLength(4)]],
         lastName: ['', [Validators.required, Validators.minLength(4)]],
         email: ['', [Validators.required, Validators.email]],
-        phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+        contactNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
         password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
         confirmPassword: ['', Validators.required],
         nic: ['', Validators.required],
         age: ['', Validators.required],
+        height : [''],
+        weight : [''],
         gender: [''],
-        userRole: ['user'],
+        userRole: [''],
         address: [''],
-        profileImage: [null]
+        profileImage: ['']
       }, { validator: this.passwordMatchValidator });
   
       // Reset form state on initialization
@@ -40,6 +45,17 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
     onSubmit() {
       if (this.registerForm.valid) {
         console.log(this.registerForm.value);
+        this.registerForm.value.userRole = parseInt(this.registerForm.value.userRole);
+        this.registerForm.value.gender = parseInt(this.registerForm.value.gender)
+        this.userServices.registerUser(this.registerForm.value).subscribe(data =>{
+          if(this.userServices.isLoggedIn()){
+            this.toastr.success("Succesfully Registered")
+          this.router.navigate(['/admin/memberManagement'])
+          } 
+        },(error)  => {
+          this.toastr.error(error.error);}
+      );
+
       }
     }
   

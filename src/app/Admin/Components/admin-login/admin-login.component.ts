@@ -32,13 +32,11 @@ constructor(private fb : FormBuilder, private userService : UserService, private
         const decoded: any = jwtDecode(data.token);
         localStorage.setItem('user', JSON.stringify(decoded));
         this.toastr.success("Welcome User!")
-        this.router.navigate(['/admin/dashboard'])   
-      }
-      // , error => {
-      //   this.toastr.error(error.error);
-      // }
-      
-  });
+        this.router.navigate(['/admin/dashboard']) }   
+  },(error)  => {
+    this.toastr.error(error.error);
+  }
+);
     
   } 
  }
