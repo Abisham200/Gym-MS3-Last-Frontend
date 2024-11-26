@@ -1,31 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
+
+// Components
 import { AppComponent } from './app.component';
 import { FeeManagementComponent } from './Admin/Components/fee-management/fee-management.component';
 import { MemberManagementComponent } from './Admin/Components/member-management/member-management.component';
-import { ProgramsManagementComponent as ProgramsManagementComponent } from './Admin/Components/programs-managment/programs-managment.component';
+import { ProgramsManagementComponent } from './Admin/Components/programs-managment/programs-managment.component';
 import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './Admin/Components/admin-login/admin-login.component';
-import { RouterOutlet } from '@angular/router';
 import { AdminLayoutComponent } from './Layouts/admin-layout/admin-layout.component';
 import { BlankLayoutComponent } from './Layouts/blank-layout/blank-layout.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// Pipes
+import { SearchFilterPipe } from './Pipes/search-filter.pipe';
 import { RegisterMemberComponent } from './Admin/Components/member-register/member-register/member-register.component';
 import { LandingPageComponent } from './Home/landing-page/landing-page/landing-page.component';
-import { SearchFilterPipe } from './Pipes/search-filter.pipe';
-import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
-
-import { ToastrModule, provideToastr } from 'ngx-toastr';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './User/User-Profile/user-profile/user-profile.component';
 import { UserPaymentsComponent } from './User/User-Payment/user-payments/user-payments.component';
 import { UserEntrollmentComponent } from './User/User-Entrollment/user-entrollment/user-entrollment.component';
 import { UserLayoutComponent } from './Layouts/user-layout/user-layout/user-layout.component';
 import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
-
-
+import { EntrollmentListComponent } from './Admin/Components/Entrollment-list/entrollment-list/entrollment-list.component';
+import { EntrollmentAddComponent } from './Admin/Components/Entrollment-add/entrollment-add/entrollment-add.component';
 
 @NgModule({
   declarations: [
@@ -45,29 +44,18 @@ import { AddProgramComponent } from './Admin/Components/program-add/add-program/
     UserEntrollmentComponent,
     UserLayoutComponent,
     AddProgramComponent,
-    
-
-
-
-
-    
+    EntrollmentListComponent,
+    EntrollmentAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterOutlet,
-    ReactiveFormsModule,
-    AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
-    
-    
-    
+    ToastrModule.forRoot() // ToastrModule added
   ],
-  providers: [provideAnimations(), // required animations providers
-  provideToastr(), ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

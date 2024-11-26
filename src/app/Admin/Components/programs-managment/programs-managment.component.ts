@@ -1,39 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SearchFilterPipe } from "../../../Pipes/search-filter.pipe";
+import { ProgramService } from '../../../Services/program.service';
 
 @Component({
   selector: 'app-programs-managment',
   templateUrl: './programs-managment.component.html',
-  styleUrl: './programs-managment.component.css'
+  styleUrl: './programs-managment.component.css',
 })
-export class ProgramsManagementComponent {
+export class ProgramsManagementComponent implements OnInit {
   searchText = '';
   isAddingProgram = false;
-  programs = [
-    {
-      id: 1,
-      name: 'Yoga Basics',
-      duration: '4 Weeks',
-      level: 'Beginner',
-      description: 'A foundational yoga program designed for beginners.',
-    },
-    {
-      id: 2,
-      name: 'Strength Training',
-      duration: '8 Weeks',
-      level: 'Intermediate',
-      description: 'A focused strength-building program for intermediate fitness levels.',
-    },
-    {
-      id: 3,
-      name: 'HIIT Blast',
-      duration: '6 Weeks',
-      level: 'Advanced',
-      description: 'High-intensity interval training for experienced individuals.',
-    },
-  ];
+  programs: any[] = [];  // Changed to hold dynamic data
 
+  constructor(private programsService: ProgramService) {}  // Inject the service
 
+  ngOnInit(): void {
+    this.fetchPrograms();
+  }
 
+  // Fetch programs data from the service
+  fetchPrograms(): void {
+    this.programsService.getPrograms().subscribe(
+      (data) => {
+        this.programs = data;
+      },
+      (error) => {
+        console.error('Error fetching programs:', error);
+      }
+    );
+  }
+
+  loadPrograms(){
+    this.programsService.getPrograms().subscribe(data =>{
+      this.programs = data;
+     } )
+  }
 
   showAddProgramForm() {
     this.isAddingProgram = true;
