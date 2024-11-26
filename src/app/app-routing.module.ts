@@ -9,6 +9,10 @@ import { FeeManagementComponent } from './Admin/Components/fee-management/fee-ma
 import { ProgramsManagementComponent } from './Admin/Components/programs-managment/programs-managment.component';
 import { BlankLayoutComponent } from './Layouts/blank-layout/blank-layout.component';
 import { LandingPageComponent } from './Home/landing-page/landing-page/landing-page.component';
+import { UserLayoutComponent } from './Layouts/user-layout/user-layout/user-layout.component';
+import { UserProfileComponent } from './User/User-Profile/user-profile/user-profile.component';
+import { UserEntrollmentComponent } from './User/User-Entrollment/user-entrollment/user-entrollment.component';
+import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
 
 
 const routes: Routes = [
@@ -48,6 +52,28 @@ const routes: Routes = [
       {
         path: 'programManagement',
         component: ProgramsManagementComponent,
+      },
+      {
+        path:'programAdd',
+        component:AddProgramComponent,
+      }
+    ],
+  },
+  {
+    path: 'user',
+    component: UserLayoutComponent, // Admin layout for secured routes
+    children: [
+      {
+        path: 'profile',
+        component: UserProfileComponent, // Consider renaming if this is for dashboard
+      },
+      {
+        path: 'payment',
+        component: UserProfileComponent,
+      },
+      {
+        path: 'enrollment',
+        component: UserEntrollmentComponent, 
       },
     ],
   },

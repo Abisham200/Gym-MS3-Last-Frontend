@@ -1,0 +1,62 @@
+<div class="container my-5">
+  <h2 class="display-4 mb-4">Add New Program</h2>
+  <form (ngSubmit)="onSubmit()" #programForm="ngForm">
+    <!-- Name -->
+    <div class="form-group mb-3">
+      <label for="name">Program Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [(ngModel)]="program.name"
+        name="name"
+        required
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        [(ngModel)]="program.description"
+        name="description"
+        rows="4"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Program Status -->
+    <div class="form-group mb-3">
+      <label for="status">Program Status</label>
+      <select
+        id="status"
+        class="form-control"
+        [(ngModel)]="program.programstatus"
+        name="programstatus"
+        required
+      >
+        <option [value]="true">Active</option>
+        <option [value]="false">Inactive</option>
+      </select>
+    </div>
+
+    <!-- Created Date -->
+    <div class="form-group mb-3">
+      <label for="createdDate">Created Date</label>
+      <input
+        type="date"
+        id="createdDate"
+        class="form-control"
+        [(ngModel)]="program.createdDate"
+        name="createdDate"
+        required
+      />
+    </div>
+
+    <!-- Action Buttons -->
+    <button type="submit" class="btn btn-success">Save Program</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </form>
+</div>

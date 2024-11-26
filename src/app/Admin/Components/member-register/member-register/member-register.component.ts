@@ -21,8 +21,8 @@ import { Router } from '@angular/router';
   
     initializeForm(): void {
       this.registerForm = this.fb.group({
-        firstName: ['', [Validators.required, Validators.minLength(4)]],
-        lastName: ['', [Validators.required, Validators.minLength(4)]],
+        firstName: ['', [Validators.required, Validators.minLength(3)]],
+        lastName: ['', [Validators.required, Validators.minLength(3)]],
         email: ['', [Validators.required, Validators.email]],
         contactNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
         password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
@@ -39,6 +39,29 @@ import { Router } from '@angular/router';
   
       // Reset form state on initialization
       this.registerForm.reset();
+
+      if (this.registerForm.valid) {
+        // Prepare data for the API
+        const formData = { 
+          ...this.registerForm.value, 
+          userRole: parseInt(this.registerForm.value.userRole),
+          gender: parseInt(this.registerForm.value.gender),
+        };
+      
+        this.userServices.registerUser(formData).subscribe(
+          (response) => {
+            this.toastr.success("Successfully Registered");
+            this.router.navigate(['/admin/memberManagement']);
+          },
+          (error) => {
+            this.toastr.error(error.error || "Registration failed. Please try again.");
+          }
+        );
+      }
+      //  else {
+      //   this.toastr.error("Please fill out all required fields correctly.");
+      // }
+      
     }
   
   
@@ -52,7 +75,9 @@ import { Router } from '@angular/router';
             this.toastr.success("Succesfully Registered")
           this.router.navigate(['/admin/memberManagement'])
           } 
-        },(error)  => {
+        }
+        ,(error)  => 
+          {
           this.toastr.error(error.error);}
       );
 
@@ -83,6 +108,10 @@ import { Router } from '@angular/router';
     const confirmPassword = form.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
+
+
+  
+  
   
   
   }

@@ -19,6 +19,11 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 
 import { ToastrModule, provideToastr } from 'ngx-toastr';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UserProfileComponent } from './User/User-Profile/user-profile/user-profile.component';
+import { UserPaymentsComponent } from './User/User-Payment/user-payments/user-payments.component';
+import { UserEntrollmentComponent } from './User/User-Entrollment/user-entrollment/user-entrollment.component';
+import { UserLayoutComponent } from './Layouts/user-layout/user-layout/user-layout.component';
+import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
 
 
 
@@ -35,6 +40,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     RegisterMemberComponent,
     LandingPageComponent,
     SearchFilterPipe,
+    UserProfileComponent,
+    UserPaymentsComponent,
+    UserEntrollmentComponent,
+    UserLayoutComponent,
+    AddProgramComponent,
     
 
 

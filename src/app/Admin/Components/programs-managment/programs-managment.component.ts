@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './programs-managment.component.css'
 })
 export class ProgramsManagementComponent {
-  searchText: string = ''; // For search functionality
+  searchText = '';
+  isAddingProgram = false;
   programs = [
     {
       id: 1,
@@ -31,23 +32,28 @@ export class ProgramsManagementComponent {
     },
   ];
 
-  // Method to edit a program
+
+
+
+  showAddProgramForm() {
+    this.isAddingProgram = true;
+  }
+
+  addProgram(newProgram: any) {
+    const nextId = this.programs.length ? Math.max(...this.programs.map((p) => p.id)) + 1 : 1;
+    this.programs.push({ ...newProgram, id: nextId });
+    this.isAddingProgram = false;
+  }
+
+  cancelAddProgram() {
+    this.isAddingProgram = false;
+  }
+
   editProgram(id: number) {
-    alert(`Edit Program with ID: ${id}`);
-    // Add your navigation or modal logic here
+    console.log(`Edit program with ID: ${id}`);
   }
 
-  // Method to delete a program
   deleteProgram(id: number) {
-    const confirmed = confirm('Are you sure you want to delete this program?');
-    if (confirmed) {
-      this.programs = this.programs.filter((program) => program.id !== id);
-    }
-  }
-
-  // Method to add a new program
-  addProgram() {
-    alert('Add a new program logic');
-    // Add your logic to add a program, like opening a modal or navigating to an add program page
+    this.programs = this.programs.filter((program) => program.id !== id);
   }
 }
