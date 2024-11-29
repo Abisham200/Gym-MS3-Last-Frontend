@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchFilterPipe } from "../../../Pipes/search-filter.pipe";
 import { ProgramService } from '../../../Services/program.service';
+import { Program } from '../../../Modals/program';
 
 @Component({
   selector: 'app-programs-managment',
@@ -10,7 +11,7 @@ import { ProgramService } from '../../../Services/program.service';
 export class ProgramsManagementComponent implements OnInit {
   searchText = '';
   isAddingProgram = false;
-  programs: any[] = [];  // Changed to hold dynamic data
+  programs! : Program[];  // Changed to hold dynamic data
 
   constructor(private programsService: ProgramService) {}  // Inject the service
 
@@ -36,9 +37,9 @@ export class ProgramsManagementComponent implements OnInit {
      } )
   }
 
-  showAddProgramForm() {
-    this.isAddingProgram = true;
-  }
+  // showAddProgramForm() {
+  //   this.isAddingProgram = true;
+  // }
 
   addProgram(newProgram: any) {
     const nextId = this.programs.length ? Math.max(...this.programs.map((p) => p.id)) + 1 : 1;

@@ -13,6 +13,7 @@ import { UserLayoutComponent } from './Layouts/user-layout/user-layout/user-layo
 import { UserProfileComponent } from './User/User-Profile/user-profile/user-profile.component';
 import { UserEntrollmentComponent } from './User/User-Entrollment/user-entrollment/user-entrollment.component';
 import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
+import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-enrollment.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,10 @@ const routes: Routes = [
       },
       {
         path: 'memberManagement',
-        component: MemberManagementComponent,
+        children : [
+          {path : '' , component: MemberManagementComponent,},
+          {path : 'enrollment/:id' , component : AddEnrollmentComponent}
+        ]
       },
       {
         path: 'memberRegister',

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntrollmentAddComponent } from './entrollment-add.component';
+import { AddEnrollmentComponent } from './add-enrollment.component';
 
-describe('EntrollmentAddComponent', () => {
-  let component: EntrollmentAddComponent;
-  let fixture: ComponentFixture<EntrollmentAddComponent>;
+describe('AddEnrollmentComponent', () => {
+  let component: AddEnrollmentComponent;
+  let fixture: ComponentFixture<AddEnrollmentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EntrollmentAddComponent]
+      declarations: [AddEnrollmentComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EntrollmentAddComponent);
+    fixture = TestBed.createComponent(AddEnrollmentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

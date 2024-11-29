@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ProgramService } from '../../../../Services/program.service';
 import { Program } from '../../../../Modals/program';
+import { ToastrService } from 'ngx-toastr';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-program',
@@ -13,20 +15,23 @@ export class AddProgramComponent {
 
   // Program model aligned with the C# entity
   program: Program = {
+    id: 0,
     name: '',
     description: '',
-    programstatus: true, // Default to active
-    createdDate: new Date().toISOString().split('T')[0], // Default to today's date
-    pricepermonth: 0,
+    programStatus: true, // Default to active
+    createdDate: new Date,
+    pricePerMonth: 0,
   };
 
-  constructor(private programService: ProgramService) {}
+  constructor(private programService: ProgramService, private toastr : ToastrService, private router : Router) {}
 
   onSubmit() {
-    if (this.program.name && this.program.description && this.program.createdDate && this.program.pricepermonth > 0) {
+    if (this.program.name && this.program.description && this.program.createdDate && this.program.pricePerMonth > 0) {
       console.log('Submitting program:', this.program); // Debug log
       this.programService.addProgram(this.program).subscribe(
         (response) => {
+          this.toastr.success('Program added successfully');
+          this.router.navigate(['/admin/programManagement']);
           console.log('Program added successfully:', response);
           this.programAdded.emit(response);
         },

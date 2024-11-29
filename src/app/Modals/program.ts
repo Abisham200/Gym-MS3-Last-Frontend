@@ -1,8 +1,8 @@
 export interface Program{
-    id?:number,
+    id:number,
     name:string,
-    pricepermonth:number,
+    pricePerMonth:number,
     description:string,
-    programstatus:boolean,
-    createdDate:string
+    programStatus:boolean,
+    createdDate:Date
 }

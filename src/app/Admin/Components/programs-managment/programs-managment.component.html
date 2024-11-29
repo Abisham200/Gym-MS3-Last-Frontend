@@ -7,20 +7,20 @@
       placeholder="Search by Program Name, Level, or Description"
       [(ngModel)]="searchText"
     />
-    <button class="btn btn-success" (click)="showAddProgramForm()">Add Program</button>
+    <button class="btn btn-success"  [routerLink]="['/admin/programAdd']" routerLinkActive="router-link-active" >Add Program</button>
   </div>
 
   <div class="program-container">
-    <div *ngFor="let program of programs | searchFilter: searchText" class="program-card">
+    <div *ngFor="let program of programs " class="program-card">
       <h3>{{ program.name }}</h3>
-      <p><strong>Duration:</strong> {{ program.duration }}</p>
-      <p><strong>Level:</strong> {{ program.level }}</p>
+      <!-- <p><strong>Duration:</strong> {{ program. }}</p>
+       -->
       <p><strong>Description:</strong> {{ program.description }}</p>
 
       <!-- New Details -->
-      <p><strong>Price per Month:</strong> ${{ program.pricepermonth }}</p>
-      <p><strong>Status:</strong> {{ program.programstatus ? 'Active' : 'Inactive' }}</p>
-      <p><strong>Created On:</strong> {{ program.createddate | date: 'mediumDate' }}</p>
+      <p><strong>Price per Month:</strong> ${{ program.pricePerMonth }}</p>
+      <p><strong>Status:</strong> {{ program.programStatus ? 'Inactive' : 'Active' }}</p>
+      <p><strong>Created On:</strong> {{ program.createdDate | date: 'mediumDate' }}</p>
 
       <div class="card-actions">
         <button class="btn btn-primary" (click)="editProgram(program.id)">Edit</button>

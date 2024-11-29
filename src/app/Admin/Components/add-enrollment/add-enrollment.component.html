@@ -1,0 +1,24 @@
+<h1 *ngIf="member">{{member.firstName}} {{member.lastName}}</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Fees</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="programs">
+        <tr *ngFor="let program of programs">
+            <th scope="row">{{program.id}}</th>
+            <td>{{program.name}}</td>
+            <td>{{program.pricePerMonth}}</td>
+            <td>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="enroll" name="mycheckboxes" [value]="program.id">
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" (click)="onSubmit()">Enroll</button>

@@ -32,7 +32,7 @@ export class UserService {
   }
 
   getUser(id: number) {
-    return this.http.get<User>( "http://localhost:5204/api/User/GetUserByID/1" + "/" + id);
+    return this.http.get<User>( "http://localhost:5204/api/User/GetUserByID" + "/" + id);
   }
 
   updateUser(user: User) {
