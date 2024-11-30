@@ -24,17 +24,17 @@
             <th>Member Name</th>
             <th>Program Name</th>
             <th>Enrollment Date</th>
-            <th>Status</th>
+            <th>Due Date</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let enrollment of enrollments; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ enrollment.memberName }}</td>
-            <td>{{ enrollment.programName }}</td>
-            <td>{{ enrollment.enrollmentDate | date: 'shortDate' }}</td>
-            <td>{{ enrollment.status }}</td>
+            <td>{{ enrollment.user.firstName }}</td>
+            <td>{{ enrollment.program.name }}</td>
+            <td>{{ enrollment.createdDate | date: 'shortDate' }}</td>
+            <td>{{ enrollment.dueDate| date: 'shortDate'}}</td>
             <td>
               <div class="btn-group" role="group">
                 <button

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../../../../Services/enrollment.service';
 import { enrollment } from '../../../../Modals/enrollment';
+import { User } from '../../../../Modals/user';
+import { ProgramService } from '../../../../Services/program.service';
 
 @Component({
   selector: 'app-list-enrollment',
@@ -11,22 +13,24 @@ export class ListEnrollmentComponent implements OnInit {
   enrollments: enrollment[] = [];
   searchText: string = '';
 
-  constructor(private enrollmentService: EnrollmentService) {}
+  constructor(private enrollmentService: EnrollmentService) {
 
+  }
+  getPrograms(){
+
+  }
   ngOnInit(): void {
     // Fetch enrollments from the service
     this.fetchEnrollments();
   }
 
   fetchEnrollments(): void {
-    this.enrollmentService.getEnrollments().subscribe(
-      (data: enrollment[]) => {
+    this.enrollmentService.getEnrollments().subscribe(data =>
+      {
         this.enrollments = data;
-      },
-      (error) => {
-        console.error('Error fetching enrollments:', error);
-      }
-    );
+        console.log(data);
+      });
+      
   }
 
   // Edit action for enrollments

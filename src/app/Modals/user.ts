@@ -1,3 +1,5 @@
+import { enrollment } from "./enrollment"
+
 export interface User {
     id: number,
   firstName: string,
@@ -14,6 +16,7 @@ export interface User {
   memberStatus?: boolean,
   address?: string,
   profileImage?: string,
+  entrollments : enrollment[]
   role: UserRoles
 }
 

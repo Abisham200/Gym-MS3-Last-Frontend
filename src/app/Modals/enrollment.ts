@@ -1,9 +1,14 @@
+import { Program } from "./program";
+import { User } from "./user";
+
 export interface enrollment{
     id:number,
-    memberName:string,
-    programName:string,
-    enrollmentDate:Date,
-    status:String
-    
+    userId:number,
+    user:User,
+    programId: number,
+    program : Program,
+    createdDate:Date,
+    dueDate:Date,
+    payment: number
    
 }

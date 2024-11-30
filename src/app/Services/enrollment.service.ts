@@ -17,13 +17,13 @@ export class EnrollmentService {
   }
 
   // Fetch all enrollments
-  getEnrollments(): Observable<enrollment[]> {
-    return this.http.get<enrollment[]>(`${this.apiurl}/GetAllEnrolls`);
+  getEnrollments() {
+    return this.http.get<enrollment[]>("http://localhost:5204/api/Enrollment/GetAllEnrolls")
   }
   
     // Delete an enrollment
-    deleteEnrollment(enrollmentId: number): Observable<void> {
-      return this.http.delete<void>(`${this.apiurl}/DeleteEnroll/${enrollmentId}`); // Adjust endpoint if needed
+    deleteEnrollment(Id: number) {
+      return this.http.delete(this.apiurl + "/DeleteEnroll/" + Id); // Adjust endpoint if needed
     }
   
     // Fetch a single enrollment by member (if needed)
