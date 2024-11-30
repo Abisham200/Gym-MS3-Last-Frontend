@@ -14,6 +14,7 @@ import { UserProfileComponent } from './User/User-Profile/user-profile/user-prof
 import { UserEntrollmentComponent } from './User/User-Entrollment/user-entrollment/user-entrollment.component';
 import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
 import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-enrollment.component';
+import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list-enrollment/list-enrollment.component';
 
 
 const routes: Routes = [
@@ -60,6 +61,14 @@ const routes: Routes = [
       {
         path:'programAdd',
         component:AddProgramComponent,
+      },
+      {
+        path:'enrollmentList',
+        component:ListEnrollmentComponent
+      },
+      {
+        path:'enrollmentAdd',
+        component:AddEnrollmentComponent
       }
     ],
   },

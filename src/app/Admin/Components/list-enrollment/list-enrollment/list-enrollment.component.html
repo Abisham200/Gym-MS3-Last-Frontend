@@ -1,0 +1,59 @@
+<div class="container my-5">
+    <div class="d-flex justify-content-around align-items-center mb-3">
+      <h2 class="display-4 mb-0">Enrollment List</h2>
+      <input
+        type="text"
+        class="form-control w-50"
+        placeholder="Search by Member Name or Program Name"
+        [(ngModel)]="searchText"
+      />
+      <button
+        class="btn btn-success"
+        [routerLink]="['/admin/addEnrollmentAdd']"
+        routerLinkActive="router-link-active"
+      >
+        + Add Enrollment
+      </button>
+    </div>
+  
+    <div class="table-responsive">
+      <table class="table table-hover table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Member Name</th>
+            <th>Program Name</th>
+            <th>Enrollment Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let enrollment of enrollments; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ enrollment.memberName }}</td>
+            <td>{{ enrollment.programName }}</td>
+            <td>{{ enrollment.enrollmentDate | date: 'shortDate' }}</td>
+            <td>{{ enrollment.status }}</td>
+            <td>
+              <div class="btn-group" role="group">
+                <button
+                  class="btn btn-primary btn-sm"
+                  (click)="onEdit(enrollment.id)"
+                >
+                  <i class="bi bi-pencil-fill"></i> Edit
+                </button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="onDelete(enrollment.id)"
+                >
+                  <i class="bi bi-trash-fill"></i> Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -24,6 +24,7 @@ import { UserEntrollmentComponent } from './User/User-Entrollment/user-entrollme
 import { UserLayoutComponent } from './Layouts/user-layout/user-layout/user-layout.component';
 import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
 import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-enrollment.component';
+import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list-enrollment/list-enrollment.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-en
     UserEntrollmentComponent,
     UserLayoutComponent,
     AddProgramComponent,
-    AddEnrollmentComponent
+    AddEnrollmentComponent,
+    ListEnrollmentComponent
   ],
   imports: [
     BrowserModule,
