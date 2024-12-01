@@ -1,13 +1,15 @@
-<div class="container my-5">
-  <div class="d-flex justify-content-around align-items-center mb-3">
-    <h2 class="display-4 mb-0">Members List</h2>
+<div class="container">
+  <h2>Members List</h2>
+  <div class="d-flex mb-3">
     <input
       type="text"
-      class="form-control w-50"
+      class="search-bar"
       placeholder="Search by First Name, Last Name, Address, or NIC"
       [(ngModel)]="searchText"
     />
-    <button class="btn btn-success"[routerLink]="['/admin/memberRegister']" routerLinkActive="router-link-active"  >+ Add User</button>
+    <button class="btn btn-success" [routerLink]="['/admin/memberRegister']">
+      + Add User
+    </button>
   </div>
 
   <div class="table-responsive">
@@ -28,36 +30,55 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let member of members | searchFilter: searchText ; let i = index">
-          <td>{{ i + 1 }}</td>
+        <tr
+          *ngFor="let member of paginatedMembers | searchFilter: searchText; let i = index"
+        >
+          <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
           <td>{{ member.firstName }}</td>
           <td>{{ member.lastName }}</td>
           <td>{{ member.email }}</td>
           <td>{{ member.contactNumber }}</td>
           <td>{{ member.nic }}</td>
           <td>{{ member.age }}</td>
-          <td>{{ member.gender==0? "Male" : "Female"}}</td>
+          <td>{{ member.gender == 0 ? 'Male' : 'Female' }}</td>
           <td>{{ member.address }}</td>
           <td>
-            <div class="btn-group" role="group">
-              <button
-                class="btn btn-primary btn-sm"
-                (click)="onEdit(member.id)"
-              >
-                <i class="bi bi-pencil-fill"></i> Edit
-              </button>
-              <button
-                class="btn btn-danger btn-sm"
-                (click)="onDelete(member.id)"
-              >
-                <i class="bi bi-trash-fill"></i> Delete
-              </button>
-            </div>
+            <button class="btn btn-primary btn-sm" (click)="onEdit(member.id)">
+              <i class="bi bi-pencil-fill"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="onDelete(member.id)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
           </td>
-          <td><button class="btn btn-secondary" [routerLink]="['/admin/memberManagement/enrollment' ,member.id ]"><i class="bi bi-person-plus"></i></button></td>
+          <td>
+            <button
+              class="btn btn-secondary"
+              [routerLink]="['/admin/memberManagement/enrollment', member.id]"
+            >
+              <i class="bi bi-person-plus"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button
+      class="btn btn-light"
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      class="btn btn-light"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
 </div>
-<router-outlet></router-outlet>

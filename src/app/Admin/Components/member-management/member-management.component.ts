@@ -11,43 +11,61 @@ import { Router } from '@angular/router';
   styleUrl: './member-management.component.css'
 })
 export class MemberManagementComponent implements OnInit {
- 
   searchText: string = '';
-  members! : User[] ;
-  
-  
-  constructor(private userServices : UserService, private toastr : ToastrService,
-    private router: Router, )
-  {}
+  members!: User[];
+  paginatedMembers!: User[];
+
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalPages: number = 0;
+
+  constructor(
+    private userServices: UserService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-     this.loadUsers();
+    this.loadUsers();
   }
-  
-    onDelete(id: number) {
-      if(confirm('Do you want to delete?')) {
-        this.userServices.deleteUser(id).subscribe(data => {
-          this.toastr.success('User is deleted', "Deleted", {
-            timeOut: 10000,
-            closeButton: true,
-            
-          });  
-          this.loadUsers();
+
+  onDelete(id: number) {
+    if (confirm('Do you want to delete?')) {
+      this.userServices.deleteUser(id).subscribe((data) => {
+        this.toastr.success('User is deleted', 'Deleted', {
+          timeOut: 10000,
+          closeButton: true,
         });
-        
-      }
+        this.loadUsers();
+      });
     }
+  }
 
-    loadUsers(){
-      this.userServices.loadUsers().subscribe(data => {
-        this.members = data;
-      })
-    }
-  
-    onEdit(id: number) {
-      this.router.navigate(['/admin/memberRegister', id])
-    }
+  loadUsers() {
+    this.userServices.loadUsers().subscribe((data) => {
+      this.members = data;
+      this.calculatePagination(); // Calculate pagination after loading users
+    });
+  }
 
+  onEdit(id: number) {
+    this.router.navigate(['/admin/memberRegister', id]);
+  }
+
+  calculatePagination(): void {
+    this.totalPages = Math.ceil(this.members.length / this.pageSize);
+    this.paginatedMembers = this.members.slice(
+      (this.currentPage - 1) * this.pageSize,
+      this.currentPage * this.pageSize
+    );
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.calculatePagination();
+    }
+  }
   // editMember(id: number) {
   //   alert(`Edit Member with ID: ${id}`);
   //   // Add your navigation or modal logic here
