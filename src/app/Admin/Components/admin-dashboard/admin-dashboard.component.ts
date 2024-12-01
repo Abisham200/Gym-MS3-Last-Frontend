@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {Chart} from 'chart.js/auto';
+import { DashboardService } from '../../../Services/dashboard.service';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,12 +9,20 @@ import { Component } from '@angular/core';
   styleUrl: './admin-dashboard.component.css',
 })
 export class AdminDashboardComponent {
-  // Example of logic you can add
-  notifications = 12;
-  isDarkMode = false;
+  totalMembers = 0;
+  revenue = 0;
 
-  toggleDarkMode() {
-    this.isDarkMode = !this.isDarkMode;
-    document.body.classList.toggle('dark', this.isDarkMode);
+  constructor(private dashboardService: DashboardService) {}
+
+  ngOnInit(): void {
+    this.dashboardService.getDashboardData().subscribe(data => {
+      this.totalMembers = data.totalMembers;
+      this.revenue = data.revenue;
+      this.updateChart(data.trends);
+    });
+  }
+
+  updateChart(trends: number[]): void {
+    // Logic to update the chart dynamically
   }
 }

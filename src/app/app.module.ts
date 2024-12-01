@@ -25,6 +25,13 @@ import { UserLayoutComponent } from './Layouts/user-layout/user-layout/user-layo
 import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
 import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-enrollment.component';
 import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list-enrollment/list-enrollment.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+
+
+
 
 @NgModule({
   declarations: [
@@ -53,9 +60,15 @@ import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(),// ToastrModule added
+    MatSlideToggleModule,
+    MatGridListModule ,
+    MatCardModule 
+    
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

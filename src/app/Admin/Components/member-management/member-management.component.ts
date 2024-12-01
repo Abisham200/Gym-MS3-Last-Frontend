@@ -29,10 +29,12 @@ export class MemberManagementComponent implements OnInit {
         this.userServices.deleteUser(id).subscribe(data => {
           this.toastr.success('User is deleted', "Deleted", {
             timeOut: 10000,
-            closeButton: true
-          });
+            closeButton: true,
+            
+          });  
+          this.loadUsers();
         });
-        this.loadUsers();
+        
       }
     }
 

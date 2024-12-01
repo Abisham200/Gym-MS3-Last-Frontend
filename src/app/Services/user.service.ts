@@ -36,7 +36,7 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    return this.http.put( "http://localhost:5204/api/User/UpdateUser?id=4" + "/" + user.id, user);
+    return this.http.put( "http://localhost:5204/api/User/UpdateUser" + "/" + user.id, user);
   }
 
   isLoggedIn() {
