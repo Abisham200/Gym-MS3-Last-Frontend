@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { EditMemberComponent } from '../edit-member/edit-member/edit-member.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';  // Import NgbModal
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'app-member-management',
@@ -28,28 +29,31 @@ export class MemberManagementComponent implements OnInit {
     private modalService: NgbModal 
   ) {}
 
-  ngOnInit(): void {
-    this.loadUsers();
-  }
-
-  onDelete(id: number) {
-    if (confirm('Do you want to delete?')) {
-      this.userServices.deleteUser(id).subscribe((data) => {
-        this.toastr.success('User is deleted', 'Deleted', {
-          timeOut: 10000,
-          closeButton: true,
-        });
-        this.loadUsers();
-      });
-    }
-  }
-
   loadUsers() {
     this.userServices.loadUsers().subscribe((data) => {
       this.members = data;
       this.calculatePagination(); // Calculate pagination after loading users
     });
   }
+
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  onDelete(id: number) {
+    if (confirm('Do you want to delete?')) {
+      this.userServices.deleteUser(id).subscribe(data => {
+        this.toastr.success('User is deleted', 'Deleted', {
+          timeOut: 10000,
+          closeButton: true,
+        });
+        this.loadUsers();
+      }
+    );
+    }
+  }
+
+  
 
   onEdit(id: number) {
     this.router.navigate(['/admin/memberRegister', id]);
@@ -71,8 +75,8 @@ export class MemberManagementComponent implements OnInit {
   }
 
   openEditModal(member: User) {
-    const modalRef = this.modalService.open(EditMemberComponent);
-    modalRef.componentInstance.member = member; // Pass the member details to the modal
+   // const modalRef = this.modalService.open(UserEditComponent);
+    //modalRef.componentInstance.member = member; // Pass the member details to the modal
   }
   // editMember(id: number) {
   //   alert(`Edit Member with ID: ${id}`);

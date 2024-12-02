@@ -3,6 +3,7 @@ import { UserService } from '../../../../Services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../../../Modals/user';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-member',
@@ -12,19 +13,26 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class EditMemberComponent {
   @Input() member!: User;
 
+
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
-    public activeModal: NgbActiveModal
-  ) {}
+    public activeModal: NgbActiveModal,
+    private route : ActivatedRoute
+  ) {
+
+    // const Uid = this.route.snapshot.paramMap.get('id');
+    // this.member.id = Number(Uid);
+  }
 
   closeModal() {
     this.activeModal.dismiss('Modal closed');
   }
 
   onSubmit() {
-    this.userService.updateUser(this.member).subscribe(
-      () => {
+    this.userService.updateUser(this.member,this.member.id).subscribe(
+      data => {
+        console.log(data);
         this.toastr.success('Member updated successfully!', 'Success');
         this.activeModal.close(this.member); // Pass updated member back
       },

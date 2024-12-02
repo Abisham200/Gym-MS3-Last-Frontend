@@ -44,6 +44,7 @@ export class FeeManagementComponent implements OnInit {
     }
     this.paymentServices.addPayment(payment).subscribe(data =>{
       console.log(data);
+      this.toastr.success('Pay Success');
     },err => {
       this.toastr.error("Already paid")
     })

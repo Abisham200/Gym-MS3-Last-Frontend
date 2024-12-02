@@ -15,6 +15,7 @@ import { UserEntrollmentComponent } from './User/User-Entrollment/user-entrollme
 import { AddProgramComponent } from './Admin/Components/program-add/add-program/add-program.component';
 import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-enrollment.component';
 import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list-enrollment/list-enrollment.component';
+import { UserEditComponent } from './Admin/Components/user-edit/user-edit.component';
 
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
         path: 'memberManagement',
         children : [
           {path : '' , component: MemberManagementComponent,},
-          {path : 'enrollment/:id' , component : AddEnrollmentComponent}
+          {path : 'enrollment/:id' , component : AddEnrollmentComponent},
+          {path : 'edit/:id', component : UserEditComponent}
         ]
       },
       {
@@ -90,10 +92,10 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '**',
-    redirectTo: '/login', // Wildcard redirects to Login
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '/login', // Wildcard redirects to Login
+  // },
 ];
 
 export default routes;

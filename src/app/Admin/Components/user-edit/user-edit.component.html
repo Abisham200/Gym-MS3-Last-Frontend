@@ -1,0 +1,81 @@
+<div class="register-container">
+    <h2>Edit Member</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <!-- Personal Details Section -->
+      <h3>Personal Details</h3>
+      <div class="form-row">
+        <div class="form-section">
+          <label for="firstName">First Name <span class="required">*</span></label>
+          <input id="firstName" type="text" formControlName="firstName" />
+          
+        </div>
+        <div class="form-section">
+          <label for="lastName">Last Name <span class="required">*</span></label>
+          <input id="lastName" type="text" formControlName="lastName" />
+          
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-section">
+          <label for="email">Email <span class="required">*</span></label>
+          <input id="email" type="email" formControlName="email" />
+         
+        </div>
+        <div class="form-section">
+          <label for="phoneNumber">Phone Number <span class="required">*</span></label>
+          <input id="phoneNumber" type="text" formControlName="contactNumber" />
+          
+        </div>
+      </div>
+
+  
+      <!-- Additional Details Section -->
+      <h3>Additional Details</h3>
+      <div class="form-row">
+        <div class="form-section">
+          <label for="nic">NIC <span class="required">*</span></label>
+          <input id="nic" type="text" formControlName="nic" />
+
+        </div>
+        <div class="form-section">
+          <label for="age">Age <span class="required">*</span></label>
+          <input id="age" type="number" formControlName="age" />
+          
+        </div>
+  
+        <div class="form-section">
+          <label for="height">Height <span class="required">*</span></label>
+          <input id="height" type="number" formControlName="height" />
+          
+        </div>
+        <div class="form-section">
+          <label for="weight">Weight <span class="required">*</span></label>
+          <input id="weight" type="number" formControlName="weight" />
+          
+        </div>
+  
+      </div>
+  
+  
+      <div class="form-row">
+        <div class="form-section">
+          <label for="profileImage">Profile Image</label>
+          <input id="profileImage" type="file" (change)="onFileSelect($event)" />
+        </div>
+        <div class="form-section">
+          <label for="address">Address</label>
+          <textarea id="address" formControlName="address" rows="3"></textarea>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <!-- <div class="form-row full-width">
+        <button  type="submit" [disabled]="!editForm.valid"  routerLinkActive="router-link-active" >Submit</button>
+      </div> -->
+
+      <button type="submit" [disabled]="!editForm.valid"  routerLinkActive="router-link-active"
+      class="btn btn-secondary">Submit</button>
+
+    </form>
+  </div>
