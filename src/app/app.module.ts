@@ -31,6 +31,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { EditMemberComponent } from './Admin/Components/edit-member/edit-member/edit-member.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserEditComponent } from './Admin/Components/user-edit/user-edit.component';
 
 
 
@@ -57,6 +58,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     AddEnrollmentComponent,
     ListEnrollmentComponent,
     EditMemberComponent,
+    UserEditComponent,
     
   ],
   imports: [

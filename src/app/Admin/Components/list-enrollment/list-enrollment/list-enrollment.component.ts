@@ -3,6 +3,7 @@ import { EnrollmentService } from '../../../../Services/enrollment.service';
 import { enrollment } from '../../../../Modals/enrollment';
 import { User } from '../../../../Modals/user';
 import { ProgramService } from '../../../../Services/program.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-enrollment',
@@ -13,7 +14,7 @@ export class ListEnrollmentComponent implements OnInit {
   enrollments: enrollment[] = [];
   searchText: string = '';
 
-  constructor(private enrollmentService: EnrollmentService) {
+  constructor(private enrollmentService: EnrollmentService, private toaster : ToastrService) {
 
   }
   getPrograms(){
@@ -40,22 +41,16 @@ export class ListEnrollmentComponent implements OnInit {
   }
 
   // Delete action for enrollments
-  onDelete(enrollmentId: number): void {
-    const confirmDelete = confirm(
-      'Are you sure you want to delete this enrollment?'
-    );
-    if (confirmDelete) {
-      this.enrollmentService.deleteEnrollment(enrollmentId).subscribe(
-        () => {
-          this.enrollments = this.enrollments.filter(
-            (enrollment) => enrollment.id !== enrollmentId
-          );
-          console.log(`Deleted enrollment with ID: ${enrollmentId}`);
-        },
-        (error) => {
-          console.error('Error deleting enrollment:', error);
-        }
-      );
+  onDelete(id : number) {
+    this.enrollmentService.deleteEnrollment(id).subscribe(data => {
+      
+      console.log(data);
+      if(data){
+        this.toaster.success('Enroll deleted');
+        this.fetchEnrollments();
+      }
+      },err => {
+        this.toaster.error("Error")
+    })
     }
-  }
 }
