@@ -29,6 +29,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { EditMemberComponent } from './Admin/Components/edit-member/edit-member/edit-member.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -52,7 +55,9 @@ import { MatCardModule } from '@angular/material/card';
     UserLayoutComponent,
     AddProgramComponent,
     AddEnrollmentComponent,
-    ListEnrollmentComponent
+    ListEnrollmentComponent,
+    EditMemberComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ import { MatCardModule } from '@angular/material/card';
     ToastrModule.forRoot(),// ToastrModule added
     MatSlideToggleModule,
     MatGridListModule ,
-    MatCardModule 
+    MatCardModule,
+    NgbModalModule
     
   ],
   providers: [

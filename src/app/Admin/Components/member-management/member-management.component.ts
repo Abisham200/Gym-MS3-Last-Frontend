@@ -4,6 +4,8 @@ import { UserService } from '../../../Services/user.service';
 import { Gender, User } from '../../../Modals/user';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { EditMemberComponent } from '../edit-member/edit-member/edit-member.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';  // Import NgbModal
 
 @Component({
   selector: 'app-member-management',
@@ -22,7 +24,8 @@ export class MemberManagementComponent implements OnInit {
   constructor(
     private userServices: UserService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal 
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +68,11 @@ export class MemberManagementComponent implements OnInit {
       this.currentPage = page;
       this.calculatePagination();
     }
+  }
+
+  openEditModal(member: User) {
+    const modalRef = this.modalService.open(EditMemberComponent);
+    modalRef.componentInstance.member = member; // Pass the member details to the modal
   }
   // editMember(id: number) {
   //   alert(`Edit Member with ID: ${id}`);

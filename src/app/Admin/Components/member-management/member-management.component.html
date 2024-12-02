@@ -43,7 +43,7 @@
           <td>{{ member.gender == 0 ? 'Male' : 'Female' }}</td>
           <td>{{ member.address }}</td>
           <td>
-            <button class="btn btn-primary btn-sm" (click)="onEdit(member.id)">
+            <button class="btn btn-primary btn-sm" (click)="openEditModal(member)">
               <i class="bi bi-pencil-fill"></i> Edit
             </button>
             <button class="btn btn-danger btn-sm" (click)="onDelete(member.id)">
