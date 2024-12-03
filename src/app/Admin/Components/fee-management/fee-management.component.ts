@@ -26,22 +26,37 @@ export class FeeManagementComponent implements OnInit {
   loadUsers() {
     this.userService.loadUsers().subscribe((data) => {
       this.members = data;
+  
       this.members.forEach((member) => {
         member.entrollments.forEach((enrollment) => {
-          let enrollPayment = {
-            memberName: member.firstName +" " + member.lastName,
+          const enrollPayment = {
+            memberName: member.firstName + ' ' + member.lastName,
             programName: enrollment.program.name,
             entrollmentId: enrollment.id,
             amount: enrollment.program.pricePerMonth,
+            paid: false, // Initialize as unpaid
           };
+  
+          // Check if payment exists for this enrollment
+          this.paymentServices.getPaymentByEnroll(enrollment.id).subscribe(
+            (payment) => {
+              if (payment) {
+                enrollPayment.paid = true;
+              }
+            },
+            (err) => {
+              console.log(`No payment found for enrollment ID: ${enrollment.id}`);
+            }
+          );
+  
           this.enrollPayments.push(enrollPayment);
         });
-        // console.log(this.enrollPayments);
       });
-      // New: Calculate pagination after loading users
+  
       this.calculatePagination();
     });
   }
+  
 
   onPay(entrollmentId: number , amount : number) {
    let payment = {

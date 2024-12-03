@@ -29,13 +29,17 @@
           <td>{{ enrollpayment.memberName }}</td>
           <td>{{ enrollpayment.programName }}</td>
           <td>{{ enrollpayment.amount }}</td>
-          
           <td>
             <div class="btn-group" role="group">
-              <button (click)="onPay(enrollpayment.entrollmentId , enrollpayment.amount)"
-                class="btn btn-primary btn-sm">
-                <i class="bi bi-currency-rupee"></i> Pay
-              </button>
+              <button
+              (click)="onPay(enrollpayment.entrollmentId, enrollpayment.amount)"
+              [ngClass]="enrollpayment.paid ? 'btn-success' : 'btn-primary'"
+              class="btn btn-sm"
+              [disabled]="enrollpayment.paid"
+            >
+              <i class="bi bi-currency-rupee"></i> 
+              {{ enrollpayment.paid ? 'Paid' : 'Pay' }}
+            </button>
               
             </div>
           </td>

@@ -84,15 +84,15 @@ const routes: Routes = [
     component: UserLayoutComponent, // Admin layout for secured routes
     children: [
       {
-        path: 'profile',
+        path: 'profile/:id',
         component: UserProfileComponent, // Consider renaming if this is for dashboard
       },
       {
-        path: 'payment',
+        path: 'payment/:id',
         component: UserProfileComponent,
       },
       {
-        path: 'enrollment',
+        path: 'enrollment/:id',
         component: UserEntrollmentComponent, 
       },
     ],
