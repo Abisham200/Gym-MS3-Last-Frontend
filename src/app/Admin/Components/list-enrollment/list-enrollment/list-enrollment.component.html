@@ -1,59 +1,69 @@
-<div class="container my-5">
-    <div class="d-flex justify-content-around align-items-center mb-3">
-      <h2 class="display-4 mb-0">Enrollment List</h2>
-      <input
-        type="text"
-        class="form-control w-50"
-        placeholder="Search by Member Name or Program Name"
-        [(ngModel)]="searchText"
-      />
-      <button
-        class="btn btn-success"
-        [routerLink]="['/admin/addEnrollmentAdd']"
-        routerLinkActive="router-link-active"
-      >
-        + Add Enrollment
-      </button>
-    </div>
-  
-    <div class="table-responsive">
-      <table class="table table-hover table-striped align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>#</th>
-            <th>Member Name</th>
-            <th>Program Name</th>
-            <th>Enrollment Date</th>
-            <th>Due Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let enrollment of enrollments; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ enrollment.user.firstName }}</td>
-            <td>{{ enrollment.program.name }}</td>
-            <td>{{ enrollment.createdDate | date: 'shortDate' }}</td>
-            <td>{{ enrollment.dueDate| date: 'shortDate'}}</td>
-            <td>
-              <div class="btn-group" role="group">
-                <button
-                  class="btn btn-primary btn-sm"
-                  (click)="onEdit(enrollment.id)"
-                >
-                  <i class="bi bi-pencil-fill"></i> Edit
-                </button>
-                <button
-                  class="btn btn-danger btn-sm"
-                  (click)="onDelete(enrollment.id)"
-                >
-                  <i class="bi bi-trash-fill"></i> Delete
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<div class="container">
+  <h2>Enrollment List</h2>
+  <div class="d-flex mb-3">
+    <input
+      type="text"
+      class="search-bar"
+      placeholder="Search by Member Name or Program Name"
+      [(ngModel)]="searchText"
+    />
+    <button
+      class="btn btn-success"
+      [routerLink]="['/admin/addEnrollment']"
+      routerLinkActive="router-link-active"
+    >
+      + Add Enrollment
+    </button>
+    
   </div>
-  
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Member Name</th>
+          <th>Program Name</th>
+          <th>Enrollment Date</th>
+          <th>Due Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let enrollment of paginatedEnrollments; let i = index">
+          <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
+          <td>{{ enrollment.user.firstName }}</td>
+          <td>{{ enrollment.program.name }}</td>
+          <td>{{ enrollment.createdDate | date: 'shortDate' }}</td>
+          <td>{{ enrollment.dueDate | date: 'shortDate' }}</td>
+          <td>
+            <div class="btn-group" role="group">
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="onEdit(enrollment.id)"
+              >
+                <i class="bi bi-pencil-fill"></i> Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="onDelete(enrollment.id)"
+              >
+                <i class="bi bi-trash-fill"></i> Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-controls">
+    <button class="btn btn-light" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-light" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+      Next
+    </button>
+  </div>
+</div>

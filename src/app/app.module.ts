@@ -32,6 +32,7 @@ import { MatCardModule } from '@angular/material/card';
 import { EditMemberComponent } from './Admin/Components/edit-member/edit-member/edit-member.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserEditComponent } from './Admin/Components/user-edit/user-edit.component';
+import { NotificationComponent } from './Admin/Components/notification/notification/notification.component';
 
 
 
@@ -59,6 +60,7 @@ import { UserEditComponent } from './Admin/Components/user-edit/user-edit.compon
     ListEnrollmentComponent,
     EditMemberComponent,
     UserEditComponent,
+    NotificationComponent,
     
   ],
   imports: [

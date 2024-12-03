@@ -1,48 +1,65 @@
-<div class="container my-5">
-    <div class="d-flex justify-content-around align-items-center mb-3">
-      <h2 class="display-4 mb-0">Payment List</h2>
-      <input
-        type="text"
-        class="form-control w-50"
-        placeholder="Search by Member Name or Program Name"
-        [(ngModel)]="searchText"
-      />
-      <button
-        class="btn btn-success">
-        + Add 
-      </button>
-    </div>
-  
-    <div class="table-responsive">
-      <table class="table table-hover table-striped align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>#</th>
-            <th>Member Name</th>
-            <th>Program Name</th>
-            <th>Fees </th>
-            
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let enrollpayment of enrollPayments; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ enrollpayment.memberName }}</td>
-            <td>{{ enrollpayment.programName }}</td>
-            <td>{{ enrollpayment.amount }}</td>
-            
-            <td>
-              <div class="btn-group" role="group">
-                <button (click)="onPay(enrollpayment.entrollmentId , enrollpayment.amount)"
-                  class="btn btn-primary btn-sm">
-                  <i class="bi bi-currency-rupee"></i> Pay
-                </button>
-                
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<div class="container">
+  <h2>Payments List</h2>
+  <div class="d-flex mb-3">
+    <input
+      type="text"
+      class="search-bar"
+      placeholder="Search by Member Name or Program Name"
+      [(ngModel)]="searchText"
+    />
+    <button class="btn btn-success">
+      + Add Payment
+    </button>
   </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Member Name</th>
+          <th>Program Name</th>
+          <th>Fees</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let enrollpayment of enrollPayments; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ enrollpayment.memberName }}</td>
+          <td>{{ enrollpayment.programName }}</td>
+          <td>{{ enrollpayment.amount }}</td>
+          
+          <td>
+            <div class="btn-group" role="group">
+              <button (click)="onPay(enrollpayment.entrollmentId , enrollpayment.amount)"
+                class="btn btn-primary btn-sm">
+                <i class="bi bi-currency-rupee"></i> Pay
+              </button>
+              
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button
+      class="btn btn-light"
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      class="btn btn-light"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
+</div>

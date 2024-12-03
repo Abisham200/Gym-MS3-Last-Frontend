@@ -1,3 +1,4 @@
+/* Admin Layout Styles */
 .admin-layout {
   display: flex;
   min-height: 100vh;
@@ -12,98 +13,103 @@
   display: flex;
   flex-direction: column;
   color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0; /* Extend to the bottom of the viewport */
+}
 
-  .sidebar-logo {
-    text-align: center;
-    margin-bottom: 40px;
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
 
-    .logo {
-      max-width: 140px;
-    }
-  }
+.sidebar-logo .logo {
+  max-width: 140px;
+}
 
-  .nav ul {
-    list-style: none;
-    padding: 0;
+.nav ul {
+  list-style: none;
+  padding: 0;
+}
 
-    li {
-      margin: 10px 0;
+.nav ul li {
+  margin: 10px 0;
+}
 
-      a {
-        text-decoration: none;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        padding: 10px 15px;
-        border-radius: 8px;
-        transition: background 0.3s;
+.nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
 
-        .icon {
-          margin-right: 10px;
-        }
+.nav ul li a .icon {
+  margin-right: 10px;
+}
 
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-      }
-    }
-  }
+.nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .main-content {
   flex: 1;
+  margin-left: 250px; /* Offset by the sidebar's width */
   background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
+  overflow-y: auto; /* Allow scrolling of content */
+}
 
-  .navbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #F86F03;
-    color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #F86F03;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    .right-controls {
-      display: flex;
-      align-items: center;
-      gap: 20px;
+.navbar .right-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-      .icons {
-        display: flex;
-        align-items: center;
-        gap: 15px;
+.navbar .right-controls .icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-        .notification-btn {
-          background: none;
-          border: none;
-          color: #fff;
-          font-size: 1.5em;
-          position: relative;
-          cursor: pointer;
+.navbar .right-controls .notification-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5em;
+  position: relative;
+  cursor: pointer;
+}
 
-          .badge {
-            font-size: 0.7em;
-            padding: 5px;
-          }
-        }
+.navbar .right-controls .notification-btn .badge {
+  font-size: 0.7em;
+  padding: 5px;
+}
 
-        .user-icon {
-          font-size: 1.5em;
-          cursor: pointer;
-        }
-      }
-    }
-  }
+.navbar .right-controls .user-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+}
 
-  .dashboard-content {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-  }
+.dashboard-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

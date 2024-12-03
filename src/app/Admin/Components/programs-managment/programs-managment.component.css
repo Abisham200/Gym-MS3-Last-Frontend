@@ -1,11 +1,39 @@
+/* Full-view container for the component */
+.programs-view {
+  width: 100%;
+  min-height: 100vh; /* Ensure it spans the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9; /* For separation from parent layout */
+  box-sizing: border-box;
+  padding: 20px 0;
+}
+
 /* Container for the card grid */
 .program-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  margin: 20px auto;
-  max-width: 1200px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Header styling */
+.header-container {
+  padding: 10px 0;
+}
+
+/* Search input */
+.search-input {
+  max-width: 50%;
+  min-width: 250px;
+}
+
+/* Add Program button */
+.add-program-btn {
+  font-size: 16px;
+  padding: 10px 15px;
 }
 
 /* Individual card styling */
@@ -28,18 +56,10 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Card heading */
-.program-card h3 {
-  color: #4caf50;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-
 /* Card content */
 .program-card p {
   color: #555;
   font-size: 14px;
-  line-height: 1.5;
   margin-bottom: 10px;
 }
 
@@ -49,15 +69,6 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-}
-
-button {
-  border: none;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
 }
 
 /* Edit button */
@@ -86,8 +97,12 @@ button {
     width: 100%;
   }
 
-  .card-actions button {
-    font-size: 12px;
-    padding: 5px 10px;
+  .search-input {
+    max-width: 100%;
+    margin-top: 10px;
+  }
+
+  .add-program-btn {
+    margin-top: 10px;
   }
 }

@@ -18,6 +18,10 @@ export class FeeManagementComponent implements OnInit {
   }
   members!: User[];
   enrollPayments: any[] = [];
+  paginatedPayments: any[] = []; // New: Holds current page data
+  currentPage: number = 1; // New: Current page
+  pageSize: number = 10; // New: Number of items per page
+  totalPages: number = 0; // New: Total number of pages
 
   loadUsers() {
     this.userService.loadUsers().subscribe((data) => {
@@ -25,15 +29,17 @@ export class FeeManagementComponent implements OnInit {
       this.members.forEach((member) => {
         member.entrollments.forEach((enrollment) => {
           let enrollPayment = {
-            memberName: member.firstName,
+            memberName: member.firstName +" " + member.lastName,
             programName: enrollment.program.name,
             entrollmentId: enrollment.id,
             amount: enrollment.program.pricePerMonth,
           };
           this.enrollPayments.push(enrollPayment);
         });
-        console.log(this.enrollPayments);
+        // console.log(this.enrollPayments);
       });
+      // New: Calculate pagination after loading users
+      this.calculatePagination();
     });
   }
 
@@ -49,6 +55,27 @@ export class FeeManagementComponent implements OnInit {
       this.toastr.error("Already paid")
     })
 
+    }
+
+
+    calculatePagination() {
+      this.totalPages = Math.ceil(this.enrollPayments.length / this.pageSize);
+      this.paginate();
+    }
+
+    paginate() {
+      const startIndex = (this.currentPage - 1) * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.paginatedPayments = this.enrollPayments.slice(startIndex, endIndex);
+    }
+  
+    // New: Handle page changes
+    changePage(page: number) {
+      if (page < 1 || page > this.totalPages) {
+        return; // Prevent invalid page numbers
+      }
+      this.currentPage = page;
+      this.paginate();
     }
 
 }

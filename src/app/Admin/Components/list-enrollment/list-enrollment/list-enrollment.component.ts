@@ -12,7 +12,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListEnrollmentComponent implements OnInit {
   enrollments: enrollment[] = [];
-  searchText: string = '';
+  searchText: string = '';paginatedEnrollments: enrollment[] = []; // Holds the current page data
+  currentPage: number = 1; // Current page
+  pageSize: number = 10; // Number of items per page
+  totalPages: number = 0; // Total number of pages
 
   constructor(private enrollmentService: EnrollmentService, private toaster : ToastrService) {
 
@@ -29,9 +32,30 @@ export class ListEnrollmentComponent implements OnInit {
     this.enrollmentService.getEnrollments().subscribe(data =>
       {
         this.enrollments = data;
-        console.log(data);
+        // console.log(data);
+        this.calculatePagination();
       });
       
+  }
+
+   // Calculate total pages for pagination
+   calculatePagination() {
+    this.totalPages = Math.ceil(this.enrollments.length / this.pageSize);
+    this.paginate();
+  }
+
+  paginate() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedEnrollments = this.enrollments.slice(startIndex, endIndex);
+  }
+
+  changePage(page: number) {
+    if (page < 1 || page > this.totalPages) {
+      return; // Prevent invalid page numbers
+    }
+    this.currentPage = page;
+    this.paginate();
   }
 
   // Edit action for enrollments

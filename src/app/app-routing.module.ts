@@ -16,6 +16,7 @@ import { AddProgramComponent } from './Admin/Components/program-add/add-program/
 import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-enrollment.component';
 import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list-enrollment/list-enrollment.component';
 import { UserEditComponent } from './Admin/Components/user-edit/user-edit.component';
+import { NotificationComponent } from './Admin/Components/notification/notification/notification.component';
 
 
 const routes: Routes = [
@@ -71,6 +72,10 @@ const routes: Routes = [
       {
         path:'enrollmentAdd',
         component:AddEnrollmentComponent
+      },
+      {
+        path:'notification',
+        component:NotificationComponent
       }
     ],
   },
