@@ -31,8 +31,17 @@ constructor(private fb : FormBuilder, private userService : UserService, private
       if (data) {
         const decoded: any = jwtDecode(data.token);
         localStorage.setItem('user', JSON.stringify(decoded));
-        this.toastr.success("Welcome User!")
-        this.router.navigate(['/admin/dashboard']) }   
+       // this.toastr.success("Welcome User!")
+       // this.router.navigate(['/admin/dashboard']) }  
+       if (decoded.Role == "Member") {
+
+        this.toastr.success("Welcome User!!!");
+        this.router.navigate(['/user/profile/:id'])
+      } else if (decoded.Role != "Member") {
+        this.router.navigate(['/admin/dashboard']);
+        this.toastr.success("Welcome Admin!!!");
+      }
+    } 
   },(error)  => {
     this.toastr.error(error.error);
   }

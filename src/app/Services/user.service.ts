@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class UserService {
 
-  url = "http://localhost:5204/api/User/Login";
+  url = "http://localhost:5204/api/User";
   
   constructor(private http : HttpClient) { }
 
@@ -24,7 +24,7 @@ export class UserService {
     return this.http.get(this.url);
   }
   loadUsers(){
-    return this.http.get<User[]>("http://localhost:5204/api/User/GetUsers")
+    return this.http.get<User[]>(`${this.url}/GetUsers?role=1`)
   }
 
   deleteUser(id: number) {

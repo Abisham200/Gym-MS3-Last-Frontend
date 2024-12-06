@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
         height : [''],
         weight : [''],
         gender: [''],
-        userRole: [''],
+        role: [''],
         address: [''],
         profileImage: ['']
       }, { validator: this.passwordMatchValidator });
@@ -44,7 +44,7 @@ import { Router } from '@angular/router';
         // Prepare data for the API
         const formData = { 
           ...this.registerForm.value, 
-          userRole: parseInt(this.registerForm.value.userRole),
+          role: parseInt(this.registerForm.value.role),
           gender: parseInt(this.registerForm.value.gender),
         };
       
@@ -68,7 +68,7 @@ import { Router } from '@angular/router';
     onSubmit() {
       if (this.registerForm.valid) {
         console.log(this.registerForm.value);
-        this.registerForm.value.userRole = parseInt(this.registerForm.value.userRole);
+        this.registerForm.value.role = parseInt(this.registerForm.value.role);
         this.registerForm.value.gender = parseInt(this.registerForm.value.gender)
         this.userServices.registerUser(this.registerForm.value).subscribe(data =>{
           if(this.userServices.isLoggedIn()){

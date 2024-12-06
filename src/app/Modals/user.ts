@@ -22,7 +22,7 @@ export interface User {
 
     export enum UserRoles
     {
-        Admin,
+        Admin ,
         Member
     }
 
