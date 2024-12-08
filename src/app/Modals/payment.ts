@@ -6,5 +6,6 @@ export interface Payment
     amount: number,
     date:Date ,
     entrollment: enrollment,
-    entrollmentId:number
+    entrollmentId:number,
+    status:string
 }

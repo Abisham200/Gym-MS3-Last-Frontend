@@ -12,7 +12,7 @@ export interface User {
   gender?: Gender,
   height?: number,
   weight?:number,
-  creationDate?: Date,
+  creationDate: Date,
   memberStatus?: boolean,
   address?: string,
   profileImage?: string,
@@ -21,9 +21,9 @@ export interface User {
 }
 
     export enum UserRoles
-    {
+    {   Member,
         Admin ,
-        Member
+        
     }
 
     export enum Gender

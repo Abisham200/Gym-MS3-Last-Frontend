@@ -10,6 +10,7 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   private url = "http://localhost:5204/api/Payment";
+  
   addPayment(Payment : any){
   return this.http.post<Payment>(this.url + "/AddPayment", Payment);
   }

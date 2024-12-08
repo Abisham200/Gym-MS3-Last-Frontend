@@ -59,7 +59,7 @@ onSubmit() {
   user.id = this.id;
 
   this.userService.updateUser(user, this.id).subscribe(data => {
-    this.toastr.success("Member is updated successfully", "Success");
+    this.toastr.info("Member is updated successfully", "Success");
     this.router.navigate(['/admin/memberManagement']);
 });
   

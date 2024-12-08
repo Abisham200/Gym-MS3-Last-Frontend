@@ -33,6 +33,7 @@ import { EditMemberComponent } from './Admin/Components/edit-member/edit-member/
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserEditComponent } from './Admin/Components/user-edit/user-edit.component';
 import { NotificationComponent } from './Admin/Components/notification/notification/notification.component';
+import { ReportComponent } from './Admin/Components/report-component/report/report.component';
 
 
 
@@ -61,6 +62,7 @@ import { NotificationComponent } from './Admin/Components/notification/notificat
     EditMemberComponent,
     UserEditComponent,
     NotificationComponent,
+    ReportComponent,
     
   ],
   imports: [

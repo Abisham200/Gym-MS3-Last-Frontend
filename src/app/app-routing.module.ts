@@ -17,6 +17,7 @@ import { AddEnrollmentComponent } from './Admin/Components/add-enrollment/add-en
 import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list-enrollment/list-enrollment.component';
 import { UserEditComponent } from './Admin/Components/user-edit/user-edit.component';
 import { NotificationComponent } from './Admin/Components/notification/notification/notification.component';
+import { ReportComponent } from './Admin/Components/report-component/report/report.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,10 @@ const routes: Routes = [
       {
         path:'notification',
         component:NotificationComponent
+      },
+      {
+        path:'report',
+        component:ReportComponent
       }
     ],
   },

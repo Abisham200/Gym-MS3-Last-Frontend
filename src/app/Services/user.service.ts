@@ -24,7 +24,7 @@ export class UserService {
     return this.http.get(this.url);
   }
   loadUsers(){
-    return this.http.get<User[]>(`${this.url}/GetUsers?role=1`)
+    return this.http.get<User[]>(`${this.url}/GetUsers?role=0`)
   }
 
   deleteUser(id: number) {
