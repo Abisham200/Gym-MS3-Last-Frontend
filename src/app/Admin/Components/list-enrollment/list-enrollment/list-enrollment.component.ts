@@ -67,14 +67,10 @@ export class ListEnrollmentComponent implements OnInit {
   // Delete action for enrollments
   onDelete(id : number) {
     this.enrollmentService.deleteEnrollment(id).subscribe(data => {
-      
       console.log(data);
-      if(data){
-        this.toaster.success('Enroll deleted');
+       this.toaster.info('Enroll deleted');
         this.fetchEnrollments();
-      }
-      },err => {
-        this.toaster.error("Error")
-    })
+      
+      })
     }
 }

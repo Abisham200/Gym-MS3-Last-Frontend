@@ -36,8 +36,8 @@
     <tbody *ngIf="alreadyEnrolled">
         <tr *ngFor="let enrolled of alreadyEnrolled">
             <th scope="row">{{enrolled.program.name}}</th>
-            <td>{{enrolled.createdDate}}</td>
-            <td>{{enrolled.dueDate}}</td>
+            <td>{{enrolled.createdDate | date: 'shortDate' }}</td>
+            <td>{{enrolled.dueDate | date: 'shortDate'}}</td>
             <td>
                 <button class="btn btn-danger btn-sm" (click)="onDelete(enrolled.id)">
                   <i class="bi bi-trash-fill"></i> Delete

@@ -10,43 +10,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 
   export class UserProfileComponent {
-    user: User = {} as User;
-    userId!: number;
-  
-    constructor(private userService: UserService, private route: ActivatedRoute) {}
+    user!: User;
+    uid: number | undefined;
+
+    constructor(private route: ActivatedRoute, private userService: UserService) {}
   
     ngOnInit(): void {
-      // Get user ID from route
-      this.userId = +this.route.snapshot.paramMap.get('id')!;
-      this.loadUser();
+
+      
+      const userId = this.route.snapshot.paramMap.get('id');
+      console.log(userId)
+      if (userId) {
+        this.uid = Number(userId)
+        this.getUserDetails(this.uid);
+      }
     }
   
-    loadUser(): void {
-      this.userService.getUser(this.userId).subscribe({
-        next: (data: User) => {
+    getUserDetails(id: number): void {
+      this.userService.getUser(id).subscribe(
+        (data) => {
           this.user = data;
         },
-        error: (err) => console.error('Error loading user:', err)
-      });
-    }
-  
-    updateUser(): void {
-      this.userService.updateUser(this.user, this.userId).subscribe({
-        next: () => {
-          alert('User updated successfully!');
-        },
-        error: (err) => console.error('Error updating user:', err)
-      });
-    }
-  
-    onFileSelected(event: any): void {
-      const file = event.target.files[0];
-      if (file) {
-        // Logic to handle image upload (can integrate with your file upload service)
-        alert('Image uploaded: ' + file.name);
-        // Example logic for file upload: Update the user profile image after upload
-        // this.user.profileImage = file;
-      }
+        (error) => {
+          console.error('Error fetching user details:', error);
+        }
+      );
     }
   }
   

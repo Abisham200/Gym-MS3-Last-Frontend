@@ -18,6 +18,7 @@ import { ListEnrollmentComponent } from './Admin/Components/list-enrollment/list
 import { UserEditComponent } from './Admin/Components/user-edit/user-edit.component';
 import { NotificationComponent } from './Admin/Components/notification/notification/notification.component';
 import { ReportComponent } from './Admin/Components/report-component/report/report.component';
+import { AuthGuard } from './authGuard/auth.guard';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent, // Admin layout for secured routes
+    //canActivate : [AuthGuard],
     children: [
       {
         path: 'dashboard',

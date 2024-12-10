@@ -7,6 +7,9 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrl: './admin-layout.component.css',
 })
 export class AdminLayoutComponent {
+
+
+
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
@@ -17,6 +20,11 @@ export class AdminLayoutComponent {
         this.highlightActiveLink(event.urlAfterRedirects);
       }
     });
+  }
+
+  onLogout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
   toggleSidebar() {

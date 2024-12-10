@@ -20,6 +20,7 @@ export class AddEnrollmentComponent implements OnInit {
   member!: User;
   alreadyEnrolled: enrollment[] = [];
   notEnrolled!: Program[] 
+  enrollments: enrollment[] = [];
   constructor(private programService: ProgramService, private route: ActivatedRoute, private userService: UserService,
     private enrollmentService: EnrollmentService, private toaster: ToastrService, private router: Router) {
     this.memberId = this.route.snapshot.paramMap.get("id");
@@ -33,6 +34,11 @@ export class AddEnrollmentComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.alreadyEnrolledFunc();
+  }
+
+  alreadyEnrolledFunc() 
+  {
     this.programService.getPrograms().subscribe(data => {
       this.programs = data
      this.notEnrolled = this.programs.filter(program =>
@@ -41,6 +47,7 @@ export class AddEnrollmentComponent implements OnInit {
       console.log(this.notEnrolled);
     });
   }
+
   onSubmit() {
     let checkedBoxes = document.querySelectorAll('input[name=mycheckboxes]:checked');
     console.log(checkedBoxes);
@@ -62,14 +69,13 @@ export class AddEnrollmentComponent implements OnInit {
 
   onDelete(id : number) {
     this.enrollmentService.deleteEnrollment(id).subscribe(data => {
-      this.toaster.success('Enroll deleted');
-      console.log(data);
-      if(data){
-       
-      }
+      this.toaster.info('Enroll deleted');
+      this.alreadyEnrolledFunc();
       },err => {
         this.toaster.error("Error")
     })
     }
+
+    
 
 }
