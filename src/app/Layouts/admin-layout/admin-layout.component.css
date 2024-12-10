@@ -8,15 +8,21 @@
 
 .sidebar {
   width: 250px;
-  background: linear-gradient(180deg, #F86F03, #FFA41B);
+  background: linear-gradient(180deg, #27374D, #526D82);
   padding: 20px;
   display: flex;
   flex-direction: column;
   color: #fff;
   position: fixed;
   top: 0;
-  left: 0;
+  left: -250px; /* Hidden by default for mobile view */
   bottom: 0; /* Extend to the bottom of the viewport */
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0; /* Show sidebar */
 }
 
 .sidebar-logo {
@@ -52,79 +58,47 @@
 }
 
 .nav ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(157, 178, 191, 0.2);
+}
+
+.nav ul li a.active {
+  background-color: #526D82; /* Highlight active links */
 }
 
 .main-content {
   flex: 1;
-  margin-left: 250px; /* Offset by the sidebar's width */
-  background-color: #f9f9f9;
+  margin-left: 0; /* No offset for hidden sidebar */
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* Allow scrolling of content */
 }
 
-.navbar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 15px 20px;
-  background-color: #F86F03;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .right-controls {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.navbar .right-controls .icons {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.navbar .right-controls .notification-btn {
-  background: none;
+.toggle-sidebar-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #526D82;
+  color: white;
   border: none;
-  color: #fff;
-  font-size: 1.5em;
-  position: relative;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  border-radius: 5px;
   cursor: pointer;
+  z-index: 1100;
 }
 
-.navbar .right-controls .notification-btn .badge {
-  font-size: 0.7em;
-  padding: 5px;
-}
-
-.navbar .right-controls .user-icon {
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
-.dashboard-content {
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .sidebar {
-    position: fixed;
-    left: -250px;
-    transition: left 0.3s ease-in-out;
-    z-index: 1000;
-  }
-
-  .sidebar.open {
-    left: 0;
+    left: 0; /* Always show sidebar on larger screens */
   }
 
   .main-content {
-    padding-left: 0;
+    margin-left: 250px; /* Offset for sidebar */
   }
+
+  .toggle-sidebar-btn {
+    display: none; /* Hide toggle button on larger screens */
+  }
+  
 }
