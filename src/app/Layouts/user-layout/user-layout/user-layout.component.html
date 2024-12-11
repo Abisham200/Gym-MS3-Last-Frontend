@@ -6,11 +6,11 @@
     </div>
     <nav class="nav">
       <ul class="primary-actions">
-        <li><a [routerLink]="'/user/profile'"><i class="icon bi bi-person fs-3"></i> Profile</a></li>
-        <li><a [routerLink]="'/user/enrollments'"><i class="icon bi bi-journal fs-3"></i> Enrollments</a></li>
-        <li><a [routerLink]="'/user/payments'"><i class="icon bi bi-wallet2 fs-3"></i> Payments</a></li>
-        <li><a [routerLink]="'/user/notifications'"><i class="icon bi bi-bell fs-3"></i> Notifications</a></li>
-        <li><a href="#"><i class="icon bi bi-box-arrow-right fs-3"></i> Logout</a></li>
+        <li><a (click)="routeProfile()"><i class="icon bi bi-person fs-3"></i> Profile</a></li>
+        <li><a (click)="routeEnrollments()"><i class="icon bi bi-journal fs-3"></i> Enrollments</a></li>
+        <li><a (click)="routePayments()"><i class="icon bi bi-wallet2 fs-3"></i> Payments</a></li>
+        <li><a (click)="routeNotifications()"><i class="icon bi bi-bell fs-3"></i> Notifications</a></li>
+        <li><a (click)="onLogout()"><i class="icon bi bi-box-arrow-right fs-3"></i> Logout</a></li>
       </ul>
     </nav>
   </aside>

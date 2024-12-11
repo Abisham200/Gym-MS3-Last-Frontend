@@ -11,13 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 
   export class UserProfileComponent {
     user!: User;
-    uid: number | undefined;
+    uid: number = 0;
+    name!:'';
 
-    constructor(private route: ActivatedRoute, private userService: UserService) {}
+    constructor(private route: ActivatedRoute, private userService: UserService) {
+
+    }
   
     ngOnInit(): void {
 
-      
       const userId = this.route.snapshot.paramMap.get('id');
       console.log(userId)
       if (userId) {
@@ -30,6 +32,7 @@ import { ActivatedRoute } from '@angular/router';
       this.userService.getUser(id).subscribe(
         (data) => {
           this.user = data;
+          
         },
         (error) => {
           console.error('Error fetching user details:', error);

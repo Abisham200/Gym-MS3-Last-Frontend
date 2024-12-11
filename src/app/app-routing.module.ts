@@ -19,6 +19,7 @@ import { UserEditComponent } from './Admin/Components/user-edit/user-edit.compon
 import { NotificationComponent } from './Admin/Components/notification/notification/notification.component';
 import { ReportComponent } from './Admin/Components/report-component/report/report.component';
 import { AuthGuard } from './authGuard/auth.guard';
+import { UserPaymentsComponent } from './User/User-Payment/user-payments/user-payments.component';
 
 
 const routes: Routes = [
@@ -89,6 +90,7 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserLayoutComponent, // Admin layout for secured routes
+    //canActivate : [AuthGuard],
     children: [
       {
         path: 'profile/:id',
@@ -96,7 +98,7 @@ const routes: Routes = [
       },
       {
         path: 'payment/:id',
-        component: UserProfileComponent,
+        component: UserPaymentsComponent,
       },
       {
         path: 'enrollment/:id',

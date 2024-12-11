@@ -1,40 +1,96 @@
+/* General Styling */
 .user-details {
-  font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: auto;
+  font-family: 'Arial', sans-serif;
+  max-width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Profile Section */
 .profile-container {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .profile-image {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ddd;
+  border: 3px solid #4CAF50;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.profile-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Section */
 .details-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .details-table th,
 .details-table td {
-  padding: 8px;
+  padding: 12px 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  font-size: 16px;
 }
 
 .details-table th {
-  width: 30%;
+  width: 35%;
+  color: #4CAF50;
+  font-weight: bold;
+  background-color: #f1f1f1;
 }
 
+.details-table td {
+  color: #333;
+}
+
+/* Loading Indicator */
 .loading {
   text-align: center;
-  font-size: 16px;
-  color: #666;
+  font-size: 18px;
+  color: #888;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .details-table th,
+  .details-table td {
+    font-size: 14px;
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .details-table th,
+  .details-table td {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+
+  .user-details {
+    padding: 15px;
+  }
 }
