@@ -20,4 +20,19 @@ export class ProgramService {
     addProgram(program: Omit<Program, 'id'>): Observable<Program> {
       return this.http.post<Program>(this.baseUrl, program);
     }
+
+    deleteProgram(id: number)
+    {
+      return this.http.delete(this.baseUrl + "/" + id);
+    }
+
+    getProgramById(id : number)
+    {
+      return this.http.get<Program>( this.baseUrl + "/" + id);
+    }
+
+    editProgram(program: Program,id : number)
+    {
+      return this.http.put( this.baseUrl + "programUpdate" + "?id=" + id, program);
+    }
 }

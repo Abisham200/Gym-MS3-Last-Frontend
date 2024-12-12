@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SearchFilterPipe } from "../../../Pipes/search-filter.pipe";
 import { ProgramService } from '../../../Services/program.service';
 import { Program } from '../../../Modals/program';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-programs-managment',
@@ -12,8 +14,9 @@ export class ProgramsManagementComponent implements OnInit {
   searchText = '';
   isAddingProgram = false;
   programs! : Program[];  // Changed to hold dynamic data
+  program! : Program;
 
-  constructor(private programsService: ProgramService) {}  // Inject the service
+  constructor(private programsService: ProgramService, private toastr : ToastrService, private router : Router) {}  // Inject the service
 
   ngOnInit(): void {
     this.fetchPrograms();
@@ -52,10 +55,23 @@ export class ProgramsManagementComponent implements OnInit {
   }
 
   editProgram(id: number) {
-    console.log(`Edit program with ID: ${id}`);
+    this.router.navigate(['/admin/programAdd']);
+    this.programsService.getProgramById(id).subscribe(data =>{
+      this.program = data;
+    })
+    
   }
 
   deleteProgram(id: number) {
-    this.programs = this.programs.filter((program) => program.id !== id);
+    if (confirm('Do you want to delete?')) {
+      this.programsService.deleteProgram(id).subscribe(data => {
+        this.toastr.info('Program is deleted', 'Deleted', {
+          timeOut: 10000,
+          closeButton: true,
+        });
+        this.loadPrograms();
+      }
+    );
+    }
   }
 }

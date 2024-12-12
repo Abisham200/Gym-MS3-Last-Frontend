@@ -3,6 +3,7 @@ import { UserService } from '../../../Services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from '../../../Services/payment.service';
 import { User } from '../../../Modals/user';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-payments',
@@ -10,22 +11,29 @@ import { User } from '../../../Modals/user';
   styleUrl: './user-payments.component.css'
 })
 export class UserPaymentsComponent {
-  
-  constructor(private userService: UserService, private paymentServices : PaymentService, private toastr : ToastrService) {}
-  ngOnInit(): void {
-    this.loadUsers();
-  }
+  memberId : any
   members!: User[];
   enrollPayments: any[] = [];
-
-  loadUsers() {
-    this.userService.loadUsers().subscribe((data) => {
-      this.members = data;
+  member!:User;
   
-      this.members.forEach((member) => {
-        member.entrollments.forEach((enrollment) => {
+  constructor(private userService: UserService, private paymentServices : PaymentService, private toastr : ToastrService, private route : ActivatedRoute) {
+    this.memberId = this.route.snapshot.paramMap.get("id");
+    console.log(this.memberId);
+   
+}
+  ngOnInit(): void {
+    this.getPayments();
+  }
+  
+
+  getPayments() {
+    this.userService.getUser(this.memberId).subscribe((data) => {
+      this.member = data;
+  
+      //this.members.forEach((member) => {
+        this.member.entrollments.forEach((enrollment) => {
           const enrollPayment = {
-            memberName: member.firstName + ' ' + member.lastName,
+            memberName: this.member.firstName + ' ' + this.member.lastName,
             programName: enrollment.program.name,
             entrollmentId: enrollment.id,
             amount: enrollment.program.pricePerMonth,
@@ -46,26 +54,12 @@ export class UserPaymentsComponent {
   
           this.enrollPayments.push(enrollPayment);
         });
-      });
+      //});
   
      
     });
   }
-  
 
-  // onPay(entrollmentId: number , amount : number) {
-  //  let payment = {
-  //     "amount": amount,
-  //     "entrollmentId": entrollmentId
-  //   }
-  //   this.paymentServices.addPayment(payment).subscribe(data =>{
-  //     console.log(data);
-  //     this.toastr.success('Pay Success');
-  //   },err => {
-  //     this.toastr.error("Already paid")
-  //   })
-
-  //   }
 
 
 }
