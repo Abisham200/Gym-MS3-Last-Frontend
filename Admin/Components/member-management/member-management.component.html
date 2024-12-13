@@ -1,0 +1,84 @@
+<div class="container">
+  <h2>Members List</h2>
+  <div class="d-flex mb-3">
+    <input
+      type="text"
+      class="search-bar"
+      placeholder="Search by First Name, Last Name, Address, or NIC"
+      [(ngModel)]="searchText"
+    />
+    <button class="btn btn-success" [routerLink]="['/admin/memberRegister']">
+      + Add User
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>NIC</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Address</th>
+          <th>Actions</th>
+          <th>Enroll</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let member of paginatedMembers | searchFilter: searchText; let i = index"
+        >
+          <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
+          <td>{{ member.firstName }}</td>
+          <td>{{ member.lastName }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.contactNumber }}</td>
+          <td>{{ member.nic }}</td>
+          <td>{{ member.age }}</td>
+          <td>{{ member.gender == 0 ? 'Male' : 'Female' }}</td>
+          <td>{{ member.address }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/admin/memberManagement/edit' , member.id]">
+              <i class="bi bi-pencil-fill"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="onDelete(member.id)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-secondary"
+              [routerLink]="['/admin/memberManagement/enrollment', member.id]"
+            >
+              <i class="bi bi-person-plus"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button
+      class="btn btn-light"
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      class="btn btn-light"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
+</div>

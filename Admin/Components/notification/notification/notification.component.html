@@ -1,0 +1,14 @@
+
+<div class="notification-container">
+    <h2 class="notification-header">Notifications</h2>
+    <ul class="notification-list">
+      <li class="notification-item" *ngFor="let notification of notifications">
+        <i class="icon bi" [ngClass]="notification.icon"></i>
+        <div class="notification-content">
+          <p class="notification-title">{{ notification.title }}</p>
+          <p class="notification-time">{{ notification.time }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  

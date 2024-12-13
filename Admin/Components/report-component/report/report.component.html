@@ -1,0 +1,140 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Reports Dashboard</h2>
+
+    <!-- Overview Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card overview-card">
+                <div class="card-body">
+                    <h5>Total Payments Received</h5>
+                    <h3>{{ receivedPayments.length }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card overview-card">
+                <div class="card-body">
+                    <h5>Pending Payments</h5>
+                    <h3>{{ duePayments.length }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card overview-card">
+                <div class="card-body">
+                    <h5>Recent Registrations</h5>
+                    <h3>{{ recentRegistrations.length }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card overview-card">
+                <div class="card-body">
+                    <h5>Recent Enrollments</h5>
+                    <h3>{{ recentEnrollments.length }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Received Payments Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Received Payments</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>ID</th>
+                        <th>Contact</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let payment of receivedPayments; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ payment.name }}</td>
+                        <td>{{ payment.id }}</td>
+                        <td>{{ payment.contact }}</td>
+                        <td>{{ payment.amount | currency }}</td>
+                        <td>{{ payment.date | date: 'mediumDate' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Due Payments Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Due Payments</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>ID</th>
+                        <th>Due Amount</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let due of duePayments; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ due.name }}</td>
+                        <td>{{ due.id }}</td>
+                        <td>{{ due.amount | currency }}</td>
+                        <td>{{ due.date | date: 'mediumDate' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Recent Registrations Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Recent Registrations</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let member of recentRegistrations">
+                    <strong>{{ member.name }}</strong> - Registered on {{ member.registrationDate | date: 'mediumDate' }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Recent Enrollments Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Recent Enrollments</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Program</th>
+                        <th>Enrollment Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let enrollment of recentEnrollments; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ enrollment.name }}</td>
+                        <td>{{ enrollment.program }}</td>
+                        <td>{{ enrollment.date | date: 'mediumDate' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

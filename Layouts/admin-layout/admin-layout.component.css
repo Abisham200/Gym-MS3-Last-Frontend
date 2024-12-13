@@ -1,0 +1,104 @@
+/* Admin Layout Styles */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #444;
+}
+
+.sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #27374D, #526D82);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hidden by default for mobile view */
+  bottom: 0; /* Extend to the bottom of the viewport */
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0; /* Show sidebar */
+}
+
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sidebar-logo .logo {
+  max-width: 140px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nav ul li {
+  margin: 10px 0;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.nav ul li a .icon {
+  margin-right: 10px;
+}
+
+.nav ul li a:hover {
+  background-color: rgba(157, 178, 191, 0.2);
+}
+
+.nav ul li a.active {
+  background-color: #526D82; /* Highlight active links */
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 0; /* No offset for hidden sidebar */
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Allow scrolling of content */
+}
+
+.toggle-sidebar-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #526D82;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    left: 0; /* Always show sidebar on larger screens */
+  }
+
+  .main-content {
+    margin-left: 250px; /* Offset for sidebar */
+  }
+
+  .toggle-sidebar-btn {
+    display: none; /* Hide toggle button on larger screens */
+  }
+  
+}

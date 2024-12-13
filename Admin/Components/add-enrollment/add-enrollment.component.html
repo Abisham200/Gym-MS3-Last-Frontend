@@ -1,0 +1,48 @@
+<h1 *ngIf="member">{{member.firstName}} {{member.lastName}}</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Fees</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="notEnrolled">
+        <tr *ngFor="let program of notEnrolled">
+            <th scope="row">{{program.id}}</th>
+            <td>{{program.name}}</td>
+            <td>{{program.pricePerMonth}}</td>
+            <td>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="enroll" name="mycheckboxes" [value]="program.id">
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" (click)="onSubmit()">Enroll</button>
+<hr>
+<h3>User Enrollments</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Due date</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="alreadyEnrolled">
+        <tr *ngFor="let enrolled of alreadyEnrolled">
+            <th scope="row">{{enrolled.program.name}}</th>
+            <td>{{enrolled.createdDate | date: 'shortDate' }}</td>
+            <td>{{enrolled.dueDate | date: 'shortDate'}}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="onDelete(enrolled.id)">
+                  <i class="bi bi-trash-fill"></i> Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,105 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4a4a4a;
+}
+
+h2.text-center {
+    color: #1d3557;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Overview Cards */
+.overview-card {
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to bottom right, #457b9d, #1d3557);
+    color: white;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.overview-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.overview-card h5 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.overview-card h3 {
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+
+/* Cards */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #1d3557;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.table {
+    margin-bottom: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f7f7f7;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+.list-group-item {
+    border: none;
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.list-group-item strong {
+    color: #1d3557;
+}
+
+@media (max-width: 768px) {
+    .overview-card h3 {
+        font-size: 2rem;
+    }
+
+    .overview-card h5 {
+        font-size: 0.9rem;
+    }
+}

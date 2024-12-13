@@ -1,0 +1,31 @@
+<div class="dashboard-container">
+	<!-- Header Section -->
+	<div class="dashboard-header">
+	  <h2>Gym Management Dashboard</h2>
+	  <p>Track your gym's performance and insights at a glance.</p>
+	</div>
+  
+	<!-- Dynamic Cards Section -->
+	<div class="cards-container">
+	  <mat-card class="card card-primary" *ngFor="let card of cards">
+		<h3>{{ card.title }}</h3>
+		<p>{{ card.value | number }}</p>
+	  </mat-card>
+	</div>
+  
+	<!-- Charts Section -->
+	<div class="charts-container">
+	  <!-- Gender Distribution Chart -->
+	  <div class="chart">
+		<h3>Gender Distribution</h3>
+		<canvas id="genderChart"></canvas>
+	  </div>
+  
+	  <!-- Month vs Payments Chart -->
+	  <div class="chart">
+		<h3>Monthly Payments</h3>
+		<canvas id="paymentsChart"></canvas>
+	  </div>
+	</div>
+  </div>
+  
