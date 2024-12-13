@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body,
@@ -64,7 +63,7 @@ form.sign-in-form {
 
 .title {
   font-size: 2.2rem;
-  color: #444;
+  color: #1A2A3A; /* Updated Primary color */
   margin-bottom: 10px;
 }
 
@@ -84,7 +83,7 @@ form.sign-in-form {
 .input-field i {
   text-align: center;
   line-height: 55px;
-  color: #acacac;
+  color: #405D72; /* Updated Secondary color */
   transition: 0.5s;
   font-size: 1.1rem;
 }
@@ -130,13 +129,13 @@ form.sign-in-form {
 }
 
 .social-icon:hover {
-  color: #F86F03;
-  border-color: #F86F03;
+  color: #27374D;
+  border-color: #27374D;
 }
 
 .btn {
   width: 150px;
-  background-color: #F86F03;
+  background-color: #27374D;
   border: none;
   outline: none;
   height: 49px;
@@ -150,8 +149,9 @@ form.sign-in-form {
 }
 
 .btn:hover {
-  background-color: #f98c39;
+  background-color: #526D82;
 }
+
 .panels-container {
   position: absolute;
   height: 100%;
@@ -170,7 +170,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #F86F03 0%, #FFA41B 100%);
+  background-image: linear-gradient(-45deg, #27374D 0%, #526D82 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -383,9 +383,11 @@ form.sign-in-form {
   .image {
     display: none;
   }
+
   .panel .content {
     padding: 0.5rem 1rem;
   }
+
   .container {
     padding: 1.5rem;
   }
