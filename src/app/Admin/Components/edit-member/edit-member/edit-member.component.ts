@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-edit-member',
   templateUrl: './edit-member.component.html',
-  styleUrl: './edit-member.component.css'
+  styleUrl: './edit-member.component.css',
 })
 export class EditMemberComponent {
   @Input() member!: User;

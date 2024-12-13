@@ -20,6 +20,7 @@ import { NotificationComponent } from './Admin/Components/notification/notificat
 import { ReportComponent } from './Admin/Components/report-component/report/report.component';
 import { AuthGuard } from './authGuard/auth.guard';
 import { UserPaymentsComponent } from './User/User-Payment/user-payments/user-payments.component';
+import { EditProgramComponent } from './Admin/Components/edit-program/edit-program/edit-program.component';
 
 
 const routes: Routes = [
@@ -63,7 +64,9 @@ const routes: Routes = [
       },
       {
         path: 'programManagement',
-        component: ProgramsManagementComponent,
+        children : [{path:'',component:ProgramsManagementComponent},
+          {path:'programEdit/:id', component:EditProgramComponent},
+        ]
       },
       {
         path:'programAdd',

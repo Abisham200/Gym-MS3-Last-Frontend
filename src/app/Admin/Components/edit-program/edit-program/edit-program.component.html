@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h5 class="modal-title">Edit Program</h5>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="programName">Program Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="programName"
+          [(ngModel)]="program.name"
+          name="programName"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          [(ngModel)]="program.description"
+          name="description"
+          required
+        ></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="pricePerMonth">Price Per Month</label>
+        <input
+          type="number"
+          class="form-control"
+          id="pricePerMonth"
+          [(ngModel)]="program.pricePerMonth"
+          name="pricePerMonth"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="programStatus">Status</label>
+        <select class="form-control" id="programStatus" [(ngModel)]="program.programStatus" name="programStatus">
+          <option [value]="true">Active</option>
+          <option [value]="false">Inactive</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="createdDate">Created Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="createdDate"
+          [(ngModel)]="program.createdDate"
+          name="createdDate"
+          disabled
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-success">Save Changes</button>
+    </form>
+  </div>
+  

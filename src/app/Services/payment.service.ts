@@ -24,4 +24,17 @@ export class PaymentService {
   {
     return this.http.get<Payment>(this.url + "/GetPaymentByEnrollId/" + id);
   }
+
+  getDuePayment(){
+    return this.http.get("http://localhost:5204/api/Payment/duePaymentsCount");
+  }
+
+  getTotalPaidAmount(){
+    return this.http.get("http://localhost:5204/api/Payment/getTotalPaidAmount");
+  }
+
+  getMonthlyPayments() {
+    return this.http.get<any[]>('http://localhost:5204/api/Payment/MonthlyPayments');
+  }
+  
 }

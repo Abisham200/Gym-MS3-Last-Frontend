@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 export class ProgramsManagementComponent implements OnInit {
   searchText = '';
   isAddingProgram = false;
-  programs! : Program[];  // Changed to hold dynamic data
+  programs! : Program[]; 
   program! : Program;
 
-  constructor(private programsService: ProgramService, private toastr : ToastrService, private router : Router) {}  // Inject the service
+  constructor(private programsService: ProgramService, private toastr : ToastrService, private router : Router) {} 
 
   ngOnInit(): void {
     this.fetchPrograms();
@@ -34,10 +34,15 @@ export class ProgramsManagementComponent implements OnInit {
     );
   }
 
-  loadPrograms(){
-    this.programsService.getPrograms().subscribe(data =>{
-      this.programs = data;
-     } )
+  loadPrograms(): void {
+    this.programsService.getPrograms().subscribe(
+      (data) => {
+        this.programs = data;
+      },
+      (error) => {
+        console.error('Error loading programs:', error);
+      }
+    );
   }
 
   // showAddProgramForm() {
@@ -55,7 +60,7 @@ export class ProgramsManagementComponent implements OnInit {
   }
 
   editProgram(id: number) {
-    this.router.navigate(['/admin/programAdd']);
+    this.router.navigate(['/admin/programManagement/programEdit', id]);
     this.programsService.getProgramById(id).subscribe(data =>{
       this.program = data;
     })

@@ -31,8 +31,7 @@ export class ProgramService {
       return this.http.get<Program>( this.baseUrl + "/" + id);
     }
 
-    editProgram(program: Program,id : number)
-    {
-      return this.http.put( this.baseUrl + "programUpdate" + "?id=" + id, program);
+    editProgram(program: Program, id: number) {
+      return this.http.put(`http://localhost:5204/api/GymProgram/programUpdate/${id}`, program);
     }
 }
