@@ -40,19 +40,26 @@ export class MemberManagementComponent implements OnInit {
     this.loadUsers();
   }
 
-  onDelete(id: number) {
-    if (confirm('Do you want to delete?')) {
-      this.userServices.deleteUser(id).subscribe(data => {
-        this.toastr.success('User is deleted', 'Deleted', {
-          timeOut: 10000,
-          closeButton: true,
-        });
-        this.loadUsers();
-      }
-    );
+  onDelete(id: number): void {
+    const confirmation = window.confirm('Are you sure you want to delete this User?');
+  
+    if (confirmation) {
+      // Proceed with the deletion if confirmed
+      this.userServices.deleteUser(id).subscribe(
+        data => {
+          console.log(data);
+          this.toastr.success('User deleted successfully');
+          this.loadUsers(); // Refresh the enrollment list
+        },
+        error => {
+          console.error(error);
+          this.toastr.error('Error deleting User');
+        }
+      );
+    } else {
+      this.toastr.info('Deletion cancelled');
     }
   }
-
   
 
   onEdit(id: number) {

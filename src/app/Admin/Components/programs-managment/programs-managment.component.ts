@@ -67,16 +67,24 @@ export class ProgramsManagementComponent implements OnInit {
     
   }
 
-  deleteProgram(id: number) {
-    if (confirm('Do you want to delete?')) {
-      this.programsService.deleteProgram(id).subscribe(data => {
-        this.toastr.info('Program is deleted', 'Deleted', {
-          timeOut: 10000,
-          closeButton: true,
-        });
-        this.loadPrograms();
-      }
-    );
+  onDelete(id: number): void {
+    const confirmation = window.confirm('Are you sure you want to delete this User?');
+  
+    if (confirmation) {
+      // Proceed with the deletion if confirmed
+      this.programsService.deleteProgram(id).subscribe(
+        data => {
+          console.log(data);
+          this.toastr.success('User deleted successfully');
+          this.loadPrograms(); // Refresh the enrollment list
+        },
+        error => {
+          console.error(error);
+          this.toastr.error('Error deleting User');
+        }
+      );
+    } else {
+      this.toastr.info('Deletion cancelled');
     }
   }
 }

@@ -1,12 +1,14 @@
 <div class="container">
   <h2>Enrollment List</h2>
   <div class="d-flex mb-3">
+    <!-- Search Input -->
     <input
       type="text"
       class="search-bar"
       placeholder="Search by Member Name or Program Name"
       [(ngModel)]="searchText"
     />
+    <!-- Add Enrollment Button -->
     <button
       class="btn btn-success"
       [routerLink]="['/admin/addEnrollment']"
@@ -14,7 +16,6 @@
     >
       + Add Enrollment
     </button>
-    
   </div>
 
   <div class="table-responsive">
@@ -30,20 +31,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let enrollment of paginatedEnrollments; let i = index">
+        <tr *ngFor="let enrollment of paginatedEnrollments | searchFilter: searchText : ['user.firstName','program.name']; let i = index">
           <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
-          <td>{{ enrollment.user.firstName }}</td>
+          <td>{{ enrollment.user.firstName }} {{ enrollment.user.lastName }}</td> <!-- Assuming lastName is part of User -->
           <td>{{ enrollment.program.name }}</td>
           <td>{{ enrollment.createdDate | date: 'shortDate' }}</td>
           <td>{{ enrollment.dueDate | date: 'shortDate' }}</td>
           <td>
             <div class="btn-group" role="group">
-              <!-- <button
-                class="btn btn-primary btn-sm"
-                (click)="onEdit(enrollment.id)"
-              >
-                <i class="bi bi-pencil-fill"></i> Edit
-              </button> -->
+
               <button
                 class="btn btn-danger btn-sm"
                 (click)="onDelete(enrollment.id)"
@@ -57,6 +53,7 @@
     </table>
   </div>
 
+  <!-- Pagination Controls -->
   <div class="pagination-controls">
     <button class="btn btn-light" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
       Previous

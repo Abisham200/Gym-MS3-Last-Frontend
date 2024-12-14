@@ -39,30 +39,76 @@ nav ul li a:hover {
   color: #fff;
   text-align: center;
   padding: 120px 20px;
-  background: #2c3e50; /* Darker background */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full screen height */
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 62, 80, 0.7); /* Dark overlay for text visibility */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  text-align: center;
 }
 
 .hero h2 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.hero h2 .brand-name {
+  color: #2ecc71; /* Highlighted brand name */
 }
 
 .hero p {
   font-size: 1.5rem;
   margin-bottom: 40px;
+  font-style: italic;
+  font-weight: 300;
 }
 
 .cta-button {
-  background-color: #2ecc71; /* Darker button color */
+  background-color: #2ecc71; /* Bright button color */
   color: #fff;
-  padding: 15px 30px;
+  padding: 15px 40px;
   text-decoration: none;
   font-size: 1.2rem;
-  border-radius: 5px;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button:hover {
   background-color: #27ae60; /* Darker hover color */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
 /* Gallery Section */
@@ -316,15 +362,34 @@ footer {
 #footer-images-container {
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  gap: 0;  /* Remove the gap if you want them to touch each other */
+  justify-content: center;
+  overflow: hidden;
 }
 
 .footer-image {
-  width: 50%;  /* Make each image take up full width of the container */
+  width: 50%; 
   height: auto;
-  object-fit: cover;  /* Ensure the image covers the full width and height without distortion */
+  object-fit: cover; 
   display: block;
+}
+
+/* Animation for the moving image */
+.moving-image {
+  position: relative;
+  animation: moveImage 10s linear infinite;
+}
+
+/* Keyframes for the image movement */
+@keyframes moveImage {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 footer p {

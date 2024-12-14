@@ -24,14 +24,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let enrollpayment of enrollPayments; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ enrollpayment.memberName }}</td>
-          <td>{{ enrollpayment.programName }}</td>
-          <td>{{ enrollpayment.amount }}</td>
-          <td>
-            <div class="btn-group" role="group">
-              <button
+      <tr *ngFor="let enrollpayment of enrollPayments | searchFilter:searchText:['memberName', 'programName', 'amount']; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ enrollpayment.memberName }}</td>
+        <td>{{ enrollpayment.programName }}</td>
+        <td>{{ enrollpayment.amount }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button
               (click)="onPay(enrollpayment.entrollmentId, enrollpayment.amount)"
               [ngClass]="enrollpayment.paid ? 'btn-success' : 'btn-primary'"
               class="btn btn-sm"
@@ -40,11 +40,10 @@
               <i class="bi bi-currency-rupee"></i> 
               {{ enrollpayment.paid ? 'Paid' : 'Pay' }}
             </button>
-              
-            </div>
-          </td>
-        </tr>
-      </tbody>
+          </div>
+        </td>
+      </tr>
+    </tbody>
     </table>
   </div>
 

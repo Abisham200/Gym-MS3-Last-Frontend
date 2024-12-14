@@ -7,22 +7,23 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#plans">Plans</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#about-main">About</a></li>
       <li><a [routerLink]="['/login']">Login</a></li>
     </ul>
   </nav>
 </header>
 
 <main>
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h2>Welcome to Rolex Gym</h2>
-      <p>Your journey to fitness starts here!</p>
-      <a href="#plans" class="cta-button">View Plans</a>
-    </div>
-  </section>
-
+ <!-- Home Section -->
+<section id="home" class="hero">
+  <img src="footer-photo2.jpg" alt="Gym Background" class="hero-image" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h2>Welcome to <span class="brand-name">Rolex Gym</span></h2>
+    <p>Your journey to fitness starts here!</p>
+    <a href="#plans" class="cta-button">View Plans</a>
+  </div>
+</section>
   <!-- Gallery Section -->
   <section id="gallery" class="gallery-section">
     <div class="gallery-intro">
@@ -30,14 +31,14 @@
       <p>Explore our fitness facilities and see how we help our members achieve their goals.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-image"><img src="gallery-photo1.jpg" alt="Gym Photo 1" /></div>
-      <div class="gallery-image"><img src="gallery-photo2.jpg" alt="Gym Photo 2" /></div>
-      <div class="gallery-image"><img src="gallery-photo3.jpg" alt="Gym Photo 3" /></div>
-      <div class="gallery-image"><img src="gallery-phtoto4.jpg" alt="Gym Photo 4" /></div>
-      <div class="gallery-image"><img src="gallery-photo5.jpg" alt="Gym Photo 5" /></div>
-      <div class="gallery-image"><img src="gallery-photo6.jpg" alt="Gym Photo 6" /></div>
-      <div class="gallery-image"><img src="gallery-photo7.jpg" alt="Gym Photo 7" /></div>
-      <div class="gallery-image"><img src="gallery-photo8.jpg" alt="Gym Photo 8" /></div>
+      <div class="gallery-image"><img src="gallery-photo1.jpg" alt="Gym Photo 1" loading="lazy" /></div>
+      <div class="gallery-image"><img src="gallery-photo2.jpg" alt="Gym Photo 2" loading="lazy" /></div>
+      <div class="gallery-image"><img src="gallery-photo3.jpg" alt="Gym Photo 3" loading="lazy" /></div>
+      <div class="gallery-image"><img src="gallery-phtoto4.jpg" alt="Gym Photo 4"loading="lazy" /></div>
+      <div class="gallery-image"><img src="gallery-photo5.jpg" alt="Gym Photo 5" loading="lazy" /></div>
+      <div class="gallery-image"><img src="gallery-photo6.jpg" alt="Gym Photo 6" loading="lazy"/></div>
+      <div class="gallery-image"><img src="gallery-photo7.jpg" alt="Gym Photo 7" loading="lazy"/></div>
+      <div class="gallery-image"><img src="gallery-photo8.jpg" alt="Gym Photo 8" loading="lazy"/></div>
     </div>
   </section>
 
@@ -46,19 +47,19 @@
   <h2>Our Plans</h2>
   <div class="plan-items">
     <div class="plan">
-      <img src="plan-running.jpg" alt="running Plan" class="plan-running" />
+      <img src="plan-running.jpg" alt="running Plan" loading="lazy" class="plan-running" />
       <h3>Running</h3>
       <p>$30/month</p>
       <a href="#login" class="plan-button">Join Now</a>
     </div>
     <div class="plan">
-      <img src="plan-weight.jpg" alt="weight Plan" class="plan-weight" />
+      <img src="plan-weight.jpg" alt="weight Plan" loading="lazy" class="plan-weight" />
       <h3>Weight Lifting</h3>
       <p>$50/month</p>
       <a href="#login" class="plan-button">Join Now</a>
     </div>
     <div class="plan">
-      <img src="plan-gymnastic.jpg" alt="gymnastic Plan" class="plan-gymnastic" />
+      <img src="plan-gymnastic.jpg" alt="gymnastic Plan" loading="lazy" class="plan-gymnastic" />
       <h3>Gymnastic</h3>
       <p>$70/month</p>
       <a href="#login" class="plan-button">Join Now</a>
@@ -144,8 +145,9 @@
   <div id="footer-content">
     <h3>Our Amazing Gym</h3>
     <div id="footer-images-container">
-      <img src="footer-photo1.jpg" alt="Full Image 1" class="footer-image">
-      <img src="footer-photo2.jpg" alt="Full Image 2" class="footer-image">
+      <img src="footer-photo1.jpg" alt="Full Image 1" class="footer-image moving-image">
+      <img src="footer-photo3.jpg" alt="Full Image 1" class="footer-image moving-image">
+      <img src="footer-photo4.jpg" alt="Full Image 1" class="footer-image moving-image">
     </div>
   </div>
   <p>&copy; 2024 Rolex Gym. All rights reserved.</p>

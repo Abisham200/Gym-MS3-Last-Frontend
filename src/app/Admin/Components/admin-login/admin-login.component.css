@@ -40,6 +40,14 @@ input {
   z-index: 5;
 }
 
+h2 {
+    font-size: 2rem; /* Adjust the font size */
+    color: #526D82; /* Set the color you prefer */
+    font-weight: bold; /* Make it bold */
+    text-align: center; /* Align the text in the center */
+    margin-bottom: 20px; /* Add space below the title */
+}
+
 form {
   display: flex;
   align-items: center;

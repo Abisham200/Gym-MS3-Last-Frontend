@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let member of paginatedMembers | searchFilter: searchText; let i = index"
+        *ngFor="let member of members | searchFilter: searchText : ['firstName', 'lastName', 'nic','address']; let i = index"
         >
           <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
           <td>{{ member.firstName }}</td>

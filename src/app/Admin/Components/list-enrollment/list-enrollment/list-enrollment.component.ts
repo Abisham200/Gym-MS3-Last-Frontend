@@ -64,13 +64,24 @@ export class ListEnrollmentComponent implements OnInit {
     // Navigate to edit page or open modal for editing (implement navigation logic)
   }
 
-  // Delete action for enrollments
-  onDelete(id : number) {
-    this.enrollmentService.deleteEnrollment(id).subscribe(data => {
-      console.log(data);
-       this.toaster.info('Enroll deleted');
-        this.fetchEnrollments();
-      
-      })
-    }
+onDelete(id: number): void {
+  const confirmation = window.confirm('Are you sure you want to delete this enrollment?');
+
+  if (confirmation) {
+    // Proceed with the deletion if confirmed
+    this.enrollmentService.deleteEnrollment(id).subscribe(
+      data => {
+        console.log(data);
+        this.toaster.success('Enrollment deleted successfully');
+        this.fetchEnrollments(); // Refresh the enrollment list
+      },
+      error => {
+        console.error(error);
+        this.toaster.error('Error deleting enrollment');
+      }
+    );
+  } else {
+    this.toaster.info('Deletion cancelled');
+  }
+}
 }
