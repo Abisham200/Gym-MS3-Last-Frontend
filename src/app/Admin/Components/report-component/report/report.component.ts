@@ -6,129 +6,36 @@ import { ProgramService } from '../../../../Services/program.service';
 import { EnrollmentService } from '../../../../Services/enrollment.service';
 import { PaymentService } from '../../../../Services/payment.service';
 
+
+
+interface CustomChartData {
+  data: number[];
+  label: string;
+  backgroundColor: string;
+}
+
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrl: './report.component.css'
+  styleUrls: ['./report.component.css'],
 })
 export class ReportComponent implements OnInit {
-  
-  receivedPayments: any[] = [
-    { name: 'John Doe', id: 101, contact: '1234567890', amount: 100, date: '2024-12-01' },
-    { name: 'Jane Smith', id: 102, contact: '9876543210', amount: 200, date: '2024-12-02' },
-  ];
-  duePayments: any[] = [
-    { name: 'Alice Brown', id: 201, amount: 150, date: '2024-12-05' },
-    { name: 'Bob White', id: 202, amount: 300, date: '2024-12-10' },
-  ];
+  // Declare arrays for data
+  receivedPayments: any[] = [];
+  duePayments: any[] = [];
   recentRegistrations: any[] = [];
   recentEnrollments: any[] = [];
   programs: any[] = [];
   users: any[] = [];
 
-  constructor(
-    private enrollmentService: EnrollmentService,
-    private paymentService: PaymentService,
-    private programService: ProgramService,
-    private userService: UserService
-  ) {}
+  // Declare chart data
+  receivedPaymentsData: CustomChartData[] = [];
+  duePaymentsData: CustomChartData[] = [];
 
-  ngOnInit(): void {
-    this.loadReceivedPayments();
-    this.loadDuePayments();
-    this.loadRecentRegistrations();
-    this.loadRecentEnrollments();
-    this.loadPrograms();
-    this.loadUsers();
-  }
+  // Declare card data
+  totalPaymentsReceived: number = 0;
+  totalPendingPayments: number = 0;
 
-  // Load data dynamically
-  loadReceivedPayments(): void {
-    this.paymentService.getAllPayments().subscribe(
-      (data) => {
-        this.receivedPayments = data.filter(payment => payment.status === 'Received');
-      },
-      (error) => console.error('Error loading received payments:', error)
-    );
-  }
-
-  loadDuePayments(): void {
-    this.paymentService.getAllPayments().subscribe(
-      (data) => {
-        this.duePayments = data.filter(payment => payment.status === 'Due');
-      },
-      (error) => console.error('Error loading due payments:', error)
-    );
-  }
-
-  loadRecentRegistrations(): void {
-    this.userService.loadUsers().subscribe(
-      (data) => {
-        const currentMonth = new Date().getMonth() + 1;
-        this.recentRegistrations = data.filter(
-          user => new Date(user.creationDate).getMonth() + 1 === currentMonth
-        );
-      },
-      (error) => console.error('Error loading recent registrations:', error)
-    );
-  }
-
-  loadRecentEnrollments(): void {
-    this.enrollmentService.getEnrollments().subscribe(
-      (data) => {
-        this.recentEnrollments = data.filter(enrollment =>
-          new Date(enrollment.createdDate).getFullYear() === new Date().getFullYear()
-        );
-      },
-      (error) => console.error('Error loading recent enrollments:', error)
-    );
-  }
-
-  loadPrograms(): void {
-    this.programService.getPrograms().subscribe(
-      (data) => this.programs = data,
-      (error) => console.error('Error loading programs:', error)
-    );
-  }
-
-  loadUsers(): void {
-    this.userService.loadUsers().subscribe(
-      (data) => this.users = data,
-      (error) => console.error('Error loading users:', error)
-    );
-  }
-
-  // Add enrollment functionality
-  addEnrollment(newEnrollment: any): void {
-    this.enrollmentService.addEnrollment(newEnrollment).subscribe(
-      (response) => {
-        console.log('Enrollment added successfully:', response);
-        this.loadRecentEnrollments(); // Refresh the enrollments
-      },
-      (error) => console.error('Error adding enrollment:', error)
-    );
-  }
-
-  // Chart Data
-  receivedPaymentsLabels: string[] = this.receivedPayments.map((p) => p.name);
-  receivedPaymentsData = [
-    {
-      data: this.receivedPayments.map((p) => p.amount),
-      label: 'Amount Received',
-      backgroundColor: '#007bff',
-    },
-  ];
-
-  duePaymentsLabels: string[] = this.duePayments.map((d) => d.name);
-  duePaymentsData = [
-    {
-      data: this.duePayments.map((d) => d.amount),
-      label: 'Due Amount',
-      backgroundColor: '#dc3545',
-    },
-  ];
-
-  // Chart Options
   chartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -140,4 +47,92 @@ export class ReportComponent implements OnInit {
     },
   };
 
+  constructor(
+    private paymentService: PaymentService,
+    private userService: UserService,
+    private enrollmentService: EnrollmentService,
+    private programService: ProgramService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadReceivedPayments();
+    this.loadDuePayments();
+    this.loadRecentRegistrations();
+    this.loadRecentEnrollments();
+    this.loadPrograms();
+    this.loadUsers();
+  }
+
+  loadReceivedPayments(): void {
+    this.paymentService.getAllPayments().subscribe(
+      (data) => {
+        this.receivedPayments = data.filter((payment) => payment.status === 'Received');
+        // Update total payments received
+        this.totalPaymentsReceived = this.receivedPayments.reduce(
+          (total, payment) => total + payment.amount,
+          0
+        );
+        // Update chart data for received payments
+        this.receivedPaymentsData = [
+          {
+            data: this.receivedPayments.map((p) => p.amount),
+            label: 'Amount Received',
+            backgroundColor: '#007bff',
+          },
+        ];
+      },
+      (error) => console.error('Error loading received payments:', error)
+    );
+  }
+
+  loadDuePayments(): void {
+    this.paymentService.getAllPayments().subscribe(
+      (data) => {
+        this.duePayments = data.filter((payment) => payment.status === 'Due');
+        // Update total pending payments
+        this.totalPendingPayments = this.duePayments.reduce(
+          (total, payment) => total + payment.amount,
+          0
+        );
+        // Update chart data for due payments
+        this.duePaymentsData = [
+          {
+            data: this.duePayments.map((d) => d.amount),
+            label: 'Due Amount',
+            backgroundColor: '#dc3545',
+          },
+        ];
+      },
+      (error) => console.error('Error loading due payments:', error)
+    );
+  }
+
+  loadRecentRegistrations(): void {
+    this.userService.loadUsers().subscribe((data) => {
+      const currentMonth = new Date().getMonth() + 1;
+      this.recentRegistrations = data.filter(
+        (user) => new Date(user.creationDate).getMonth() + 1 === currentMonth
+      );
+    });
+  }
+
+  loadRecentEnrollments(): void {
+    this.enrollmentService.getEnrollments().subscribe((data) => {
+      this.recentEnrollments = data.filter(
+        (enrollment) => new Date(enrollment.createdDate).getFullYear() === new Date().getFullYear()
+      );
+    });
+  }
+
+  loadPrograms(): void {
+    this.programService.getPrograms().subscribe((data) => {
+      this.programs = data;
+    });
+  }
+
+  loadUsers(): void {
+    this.userService.loadUsers().subscribe((data) => {
+      this.users = data;
+    });
+  }
 }

@@ -23,7 +23,7 @@ export class EnrollmentService {
   
     // Delete an enrollment
     deleteEnrollment(Id: number) {
-      return this.http.delete(this.apiurl + "/DeleteEnroll/" + Id); // Adjust endpoint if needed
+      return this.http.delete(this.apiurl + "/DeleteEnroll/" + Id); 
     }
   
     // Fetch a single enrollment by member (if needed)
