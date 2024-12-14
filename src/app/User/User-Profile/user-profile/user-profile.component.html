@@ -1,62 +1,154 @@
-<div class="user-details" *ngIf="user">
-  <h1>Hi! {{user.firstName +" "+user.lastName}}</h1>
-  
-  <div class="profile-container">
-    <img [src]="user.profileImage" alt="Profile Image" class="profile-image" />
-  </div>
-  
-  <table class="details-table">
-    <tr>
-      <th>FirstName</th>
-      <td>{{ user.firstName }}</td>
-    </tr>
-    <tr>
-      <th>LastName</th>
-      <td>{{ user.lastName }}</td>
-    </tr>
-    <tr>
-      <th>Contact Number</th>
-      <td>{{ user.contactNumber }}</td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td>{{ user.email }}</td>
-    </tr>
-    <tr>
-      <th>NIC</th>
-      <td>{{ user.nic }}</td>
-    </tr>
-    <tr>
-      <th>Age</th>
-      <td>{{ user.age }}</td>
-    </tr>
-    <tr>
-      <th>Gender</th>
-      <td>{{ user.gender == 0 ? 'Male' : 'Female' }}</td>
-    </tr>
-    <tr>
-      <th>Weight</th>
-      <td>{{ user.weight }} kg</td>
-    </tr>
-    <tr>
-      <th>Height</th>
-      <td>{{ user.height }} cm</td>
-    </tr>
-    <tr>
-      <th>Creation Date</th>
-      <td>{{ user.creationDate | date }}</td>
-    </tr>
-    <tr>
-      <th>Member Status</th>
-      <td>{{ user.memberStatus== true ? 'Active' : 'NotActive' }}</td>
-    </tr>
-    <tr>
-      <th>Address</th>
-      <td>{{ user.address }}</td>
-    </tr>
-  </table>
-</div>
+<div class="user-details-container">
+  <div class="user-details" *ngIf="user">
+    <h1 class="user-greeting">Welcome Back</h1>
+    <h2>{{ user.firstName + " " + user.lastName }}</h2>
 
-<div *ngIf="!user" class="loading">
-  <p>Loading user details...</p>
+    <form #userForm="ngForm" (ngSubmit)="updateUserDetails()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          [(ngModel)]="user.firstName"
+          name="firstName"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          [(ngModel)]="user.lastName"
+          name="lastName"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="contactNumber">Contact Number</label>
+        <input
+          type="text"
+          id="contactNumber"
+          [(ngModel)]="user.contactNumber"
+          name="contactNumber"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [value]="user.email"
+          class="form-control"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="nic">NIC</label>
+        <input
+          type="text"
+          id="nic"
+          [value]="user.nic"
+          class="form-control"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input
+          type="number"
+          id="age"
+          [(ngModel)]="user.age"
+          name="age"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select
+          id="gender"
+          [(ngModel)]="user.gender"
+          name="gender"
+          class="form-control"
+        >
+          <option [value]="0">Male</option>
+          <option [value]="1">Female</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="weight">Weight (kg)</label>
+        <input
+          type="number"
+          id="weight"
+          [(ngModel)]="user.weight"
+          name="weight"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="height">Height (cm)</label>
+        <input
+          type="number"
+          id="height"
+          [(ngModel)]="user.height"
+          name="height"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="creationDate">Creation Date</label>
+        <input
+          type="text"
+          id="creationDate"
+          [value]="user.creationDate | date"
+          class="form-control"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="memberStatus">Member Status</label>
+        <input
+          type="text"
+          id="memberStatus"
+          [value]="user.memberStatus ? 'Active' : 'Not Active'"
+          class="form-control"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          [(ngModel)]="user.address"
+          name="address"
+          class="form-control"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update Details</button>
+    </form>
+  </div>
+
+  <div *ngIf="!user" class="loading">
+    <p>Loading user details...</p>
+  </div>
 </div>
