@@ -5,6 +5,8 @@ import { UserService } from '../../../../Services/user.service';
 import { ProgramService } from '../../../../Services/program.service';
 import { EnrollmentService } from '../../../../Services/enrollment.service';
 import { PaymentService } from '../../../../Services/payment.service';
+import { User } from '../../../../Modals/user';
+import { enrollment } from '../../../../Modals/enrollment';
 
 
 
@@ -23,8 +25,8 @@ export class ReportComponent implements OnInit {
   // Declare arrays for data
   receivedPayments: any[] = [];
   duePayments: any[] = [];
-  recentRegistrations: any[] = [];
-  recentEnrollments: any[] = [];
+  recentRegistrations: User[] = [];
+  recentEnrollments: enrollment[] = [];
   programs: any[] = [];
   users: any[] = [];
 
@@ -33,6 +35,7 @@ export class ReportComponent implements OnInit {
   duePaymentsData: CustomChartData[] = [];
 
   // Declare card data
+  totalPaymentReceived:number=0;
   totalPaymentsReceived: number = 0;
   totalPendingPayments: number = 0;
 
@@ -61,6 +64,7 @@ export class ReportComponent implements OnInit {
     this.loadRecentEnrollments();
     this.loadPrograms();
     this.loadUsers();
+    this.fetchPaymentsData();
   }
 
   loadReceivedPayments(): void {
@@ -135,4 +139,16 @@ export class ReportComponent implements OnInit {
       this.users = data;
     });
   }
+
+  fetchPaymentsData(): void {
+    this.paymentService.getAllPayments().subscribe((payments) => {
+      this.totalPaymentReceived = payments.reduce(
+        (sum, payment) => sum + payment.amount,
+        0
+      );
+      
+    });
+  }
+
+  
 }

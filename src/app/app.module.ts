@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -35,6 +35,7 @@ import { UserEditComponent } from './Admin/Components/user-edit/user-edit.compon
 import { NotificationComponent } from './Admin/Components/notification/notification/notification.component';
 import { ReportComponent } from './Admin/Components/report-component/report/report.component';
 import { EditProgramComponent } from './Admin/Components/edit-program/edit-program/edit-program.component';
+import { MyInterceptorService } from './Interceptor/interceptor.service';
 
 
 
@@ -82,7 +83,8 @@ import { EditProgramComponent } from './Admin/Components/edit-program/edit-progr
     
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    //{ provide: HTTP_INTERCEPTORS, useClass: MyInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -16,7 +16,7 @@ export class EditProgramComponent implements OnInit {
     name: '',
     pricePerMonth: 0,
     description: '',
-    programStatus: true,
+    programstatus: true,
     createdDate: new Date()
   };
   programId: number = 0;
@@ -52,7 +52,7 @@ export class EditProgramComponent implements OnInit {
       (updatedProgram) => {
         console.log('Program updated successfully:', updatedProgram);
         this.toastr.success('Program updated successfully!', 'Success');
-        this.router.navigate(['/programManagement'], { queryParams: { reload: true } }); 
+        this.router.navigate(['/admin/programManagement'], { queryParams: { reload: true } }); 
       },
       (error) => {
         console.error('Error updating program:', error);
@@ -62,7 +62,7 @@ export class EditProgramComponent implements OnInit {
   }
 
   closeModal(): void {
-    this.router.navigate(['/programManagement']);
+    this.router.navigate(['/admin/programManagement']);
   }
 
 

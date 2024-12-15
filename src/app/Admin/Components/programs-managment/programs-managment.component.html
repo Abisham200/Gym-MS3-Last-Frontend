@@ -30,8 +30,8 @@
       <div *ngFor="let program of programs | searchFilter: searchText : ['name', 'description', 'pricePerMonth']" class="program-card">
         <h3>{{ program.name }}</h3>
         <p><strong>Description:</strong> {{ program.description }}</p>
-        <p><strong>Price per Month:</strong> ${{ program.pricePerMonth }}</p>
-        <p><strong>Status:</strong> {{ program.programStatus ? 'Inactive' : 'Active' }}</p>
+        <p><strong>Price per Month:</strong> {{ program.pricePerMonth|currency:"INR":"symbol" }}</p>
+        <p><strong>Status:</strong> {{ program.programstatus ? 'Active' : 'Inactive' }}</p>
         <p><strong>Created On:</strong> {{ program.createdDate | date: 'mediumDate' }}</p>
         <div class="card-actions">
           <button class="btn btn-primary" (click)="editProgram(program.id)">Edit</button>

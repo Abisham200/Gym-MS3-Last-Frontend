@@ -5,14 +5,14 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
+          <th scope="col">Program</th>
           <th scope="col">Fees</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Select</th>
         </tr>
       </thead>
       <tbody *ngIf="notEnrolled">
-        <tr *ngFor="let program of notEnrolled">
-          <th scope="row">{{program.id}}</th>
+        <tr *ngFor="let program of notEnrolled ; let i = index">
+          <th scope="row">{{i+1}}</th>
           <td>{{program.name}}</td>
           <td>{{program.pricePerMonth}}</td>
           <td>
@@ -36,18 +36,19 @@
   
     <hr />
   
-    <h3>User Enrollments</h3>
+    <h3>Already Enrolled</h3>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
+          <th scope="col">Program</th>
+          <th scope="col">Enrolled Date</th>
           <th scope="col">Due date</th>
           <th scope="col">Handle</th>
         </tr>
       </thead>
       <tbody *ngIf="alreadyEnrolled">
-        <tr *ngFor="let enrolled of alreadyEnrolled">
+        <tr *ngFor="let enrolled of alreadyEnrolled ; let i = index">
+          
           <th scope="row">{{enrolled.program.name}}</th>
           <td>{{enrolled.createdDate | date: 'shortDate' }}</td>
           <td>{{enrolled.dueDate | date: 'shortDate'}}</td>

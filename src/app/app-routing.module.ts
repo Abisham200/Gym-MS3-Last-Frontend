@@ -40,7 +40,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent, // Admin layout for secured routes
-    //canActivate : [AuthGuard],
+    canActivate : [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -93,7 +93,7 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserLayoutComponent, // Admin layout for secured routes
-    //canActivate : [AuthGuard],
+    canActivate : [AuthGuard],
     children: [
       {
         path: 'profile/:id',

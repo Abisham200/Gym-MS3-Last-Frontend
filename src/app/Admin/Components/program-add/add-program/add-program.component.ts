@@ -18,7 +18,7 @@ export class AddProgramComponent {
     id: 0,
     name: '',
     description: '',
-    programStatus: true, // Default to active
+    programstatus: true, // Default to active
     createdDate: new Date,
     pricePerMonth: 0,
   };

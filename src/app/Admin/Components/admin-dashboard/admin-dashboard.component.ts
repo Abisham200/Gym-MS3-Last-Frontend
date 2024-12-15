@@ -7,6 +7,7 @@ import { UserService } from '../../../Services/user.service';
 import { ProgramService } from '../../../Services/program.service';
 import { PaymentService } from '../../../Services/payment.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
+import { enrollment } from '../../../Modals/enrollment';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -25,6 +26,8 @@ export class AdminDashboardComponent {
 
   totalPaymentsReceived: number = 0;
   duePayments: number = 0;
+  totalPay:enrollment[]=[];
+  totalPayCount:number=0;
 
   constructor(
     private userService: UserService,
@@ -34,6 +37,7 @@ export class AdminDashboardComponent {
   ) {}
 
   ngOnInit(): void {
+    this.getTotalPayCount();
     this.fetchPrograms();
     this.fetchPaymentsData();
     this.userService.loadUsers().subscribe((data) => {
@@ -45,6 +49,7 @@ export class AdminDashboardComponent {
 
       this.renderGenderChart();
       this.fetchMonthlyPayments();
+     
       this.updateCards();
     });
   }
@@ -60,6 +65,16 @@ export class AdminDashboardComponent {
     );
   }
 
+  getTotalPayCount()
+  {
+    this.enrollmentService.getEnrollments().subscribe(data=>{
+      this.totalPay = data
+      this.totalPayCount = this.totalPay.length
+      console.log(this.totalPayCount)
+      this.updateCards();
+    })
+  }
+
   fetchPaymentsData(): void {
     this.paymentService.getAllPayments().subscribe((payments) => {
       this.totalPaymentsReceived = payments.reduce(
@@ -70,15 +85,17 @@ export class AdminDashboardComponent {
     });
 
     this.paymentService.getDuePayment().subscribe((data: any) => {
-      this.duePayments = data.count;
+      this.duePayments = data;
       this.updateCards();
     });
   }
 
   updateCards(): void {
+
+    console.log('value :' ,this.totalPayCount - this.duePayments )
     this.cards = [
       { title: 'Total Members', value: this.users.length },
-      { title: 'Due Payments', value: this.duePayments },
+      { title: 'Due Payments', value:this.totalPayCount - this.duePayments },
       { title: 'Total Payments Received', value: this.totalPaymentsReceived },
       { title: 'Gym Programs', value: this.programs.length },
     ];

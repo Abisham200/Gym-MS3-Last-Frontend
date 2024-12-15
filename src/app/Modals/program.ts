@@ -3,6 +3,6 @@ export interface Program{
     name:string,
     pricePerMonth:number,
     description:string,
-    programStatus:boolean,
+    programstatus:boolean,
     createdDate:Date
 }

@@ -7,7 +7,7 @@
             <div class="card overview-card">
                 <div class="card-body">
                     <h5>Total Payments Received</h5>
-                    <h3>{{ receivedPayments.length }}</h3>
+                    <h3>{{ totalPaymentReceived }}</h3>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
         <div class="card-body">
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let member of recentRegistrations">
-                    <strong>{{ member.name }}</strong> - Registered on {{ member.registrationDate | date: 'mediumDate' }}
+                    <strong>{{ member.firstName+' '+ member.lastName }}</strong> - Registered on {{ member.creationDate | date: 'mediumDate' }}
                 </li>
             </ul>
         </div>
@@ -129,9 +129,9 @@
                 <tbody>
                     <tr *ngFor="let enrollment of recentEnrollments; let i = index">
                         <td>{{ i + 1 }}</td>
-                        <td>{{ enrollment.name }}</td>
-                        <td>{{ enrollment.program }}</td>
-                        <td>{{ enrollment.date | date: 'mediumDate' }}</td>
+                        <td>{{ enrollment.user.firstName+ ' '+ enrollment.user.lastName}}</td>
+                        <td>{{ enrollment.program.name }}</td>
+                        <td>{{ enrollment.createdDate | date: 'mediumDate' }}</td>
                     </tr>
                 </tbody>
             </table>
